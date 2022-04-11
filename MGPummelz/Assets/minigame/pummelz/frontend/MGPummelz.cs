@@ -292,6 +292,7 @@ namespace mg.pummelz
             types.Add(MGPumGUIPlayerController.type);
             types.Add(MGPumSkipTurnAIPlayerController.type);
             types.Add(MGPumSimpleAIPlayerController.type);
+            types.Add(MGPumNobleSweetPaprikaAIPlayerController.type);
 
             
 
@@ -331,9 +332,10 @@ namespace mg.pummelz
             {
                 return new MGPumSimpleAIPlayerController(playerID, true);
             }
-
-       
-
+            else if (MGPumNobleSweetPaprikaAIPlayerController.type.Equals(type))
+            {
+                return new MGPumNobleSweetPaprikaAIPlayerController(playerID);
+            }
             else
             {
                 return new MGPumSkipTurnAIPlayerController(playerID, true);
