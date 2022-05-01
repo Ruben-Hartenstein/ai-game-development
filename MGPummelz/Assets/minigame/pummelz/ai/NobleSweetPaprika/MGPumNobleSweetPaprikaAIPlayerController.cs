@@ -8,13 +8,17 @@ namespace mg.pummelz
     {
 
         public const string type = "NobleSweetPaprika";
-        public MGPumBreadthFirstSearch pathFinder = new MGPumBreadthFirstSearch();
+        public MGPumBreadthFirstSearch pathFinder;
+        private MGPumDecisionTreeManager decisionTreeManager;
         protected override int[] getTeamMartikels()
         {
             return new int[] { 2746235, 8366074 };
         }
 
-        public MGPumNobleSweetPaprikaAIPlayerController(int playerID) : base(playerID) { }
+        public MGPumNobleSweetPaprikaAIPlayerController(int playerID) : base(playerID) {
+            pathFinder = new MGPumBreadthFirstSearch();
+            decisionTreeManager = new MGPumDecisionTreeManager(this);
+        }
 
         internal override MGPumCommand calculateCommand()
         {
@@ -23,6 +27,8 @@ namespace mg.pummelz
             List<MGPumUnit> availableUnits = state.getAllUnitsInZone(MGPumZoneType.Battlegrounds, this.playerID);
             foreach (MGPumUnit unit in availableUnits)
             {
+                Debug.Log(unit.unitID);
+                decisionTreeManager.getDecision(unit);
                 commands.AddRange(getAllCommands(unit));
             }
             if (commands.Count == 0)
