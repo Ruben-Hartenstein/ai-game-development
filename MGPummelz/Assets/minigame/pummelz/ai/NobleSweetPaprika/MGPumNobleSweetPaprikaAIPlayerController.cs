@@ -22,7 +22,7 @@ namespace mg.pummelz
             List<MGPumCommand> commands = new List<MGPumCommand>();
             List<MGPumUnit> availableUnits = state.getAllUnitsInZone(MGPumZoneType.Battlegrounds, this.playerID);
             foreach (MGPumUnit unit in availableUnits)
-            {  
+            {
                 commands.AddRange(getAllCommands(unit));
             }
             if (commands.Count == 0)
@@ -42,35 +42,43 @@ namespace mg.pummelz
         {
             List<MGPumCommand> commands = new List<MGPumCommand>();
             if (stateOracle.canMove(unit) && unit.currentSpeed >= 1)
-            {
                 commands.AddRange(getAllMoveCommands(unit));
-            }
 
-            //if (stateOracle.canAttack(unit) && unit.currentRange >= 1)
-            //{
-            //    Debug.Log("Can Attack");
-            //    commands.AddRange(getAllAttackCommands(unit));
-            //}
+            if (stateOracle.canAttack(unit) && unit.currentRange >= 1)
+                commands.AddRange(getAllAttackCommands(unit));
 
             return commands;
+        }
+
+        private List<MGPumField> getFieldsInRange(MGPumField home, int range, int ownerID)
+        {
+            List<MGPumField> fieldsInRange = new List<MGPumField>();
+            for (int x = home.x - range; x <= home.x + range; x++)
+            {
+                for (int y = home.y - range; y <= home.y + range; y++)
+                {
+                    MGPumField field = this.state.getField(new Vector2Int(x, y));    
+                    if (field == null)
+                        continue;
+                    if(field.isEmpty() && ownerID == -1)
+                        fieldsInRange.Add(field);
+                    else if(!field.isEmpty() && field.getUnit(this.state).ownerID == ownerID)
+                        fieldsInRange.Add(field);                            
+                }
+            }
+            return fieldsInRange;
         }
 
         private List<MGPumMoveCommand> getAllMoveCommands(MGPumUnit unit)
         {
             List<MGPumMoveCommand> moveCommands = new List<MGPumMoveCommand>();
-            MGPumField[,] fields = this.state.fields.fieldArray;
-            foreach (MGPumField field in fields)
+            List<MGPumField> fieldsInRange = getFieldsInRange(unit.field, unit.currentSpeed, -1);
+            foreach (MGPumField field in fieldsInRange)
             {
-                if (field == null || !field.isEmpty())
-                    continue;
-                int dist = getAbsoluteDistance(unit.field, field);
-                if (dist <= unit.currentSpeed)
-                {   
-                    MGPumMoveCommand command = getMoveCommandBreadthFirst(unit, field);
-                    if (command != null)
-                    {
-                        moveCommands.Add(command);
-                    }                        
+                MGPumFieldChain chain = getChainBreadthFirst(unit, field, unit.getMoveMatcher());
+                if (chain != null)
+                {
+                    moveCommands.Add(new MGPumMoveCommand(this.playerID, chain, unit));
                 }
             }
             return moveCommands;
@@ -79,6 +87,13 @@ namespace mg.pummelz
         private List<MGPumAttackCommand> getAllAttackCommands(MGPumUnit unit)
         {
             List<MGPumAttackCommand> attackCommands = new List<MGPumAttackCommand>();
+            List<MGPumField> fieldsInRange = getFieldsInRange(unit.field, unit.currentRange, 1 - this.playerID);
+            foreach (MGPumField field in fieldsInRange)
+            {
+                MGPumFieldChain chain = getChainBreadthFirst(unit, field, unit.getAttackMatcher());
+                if (chain != null)
+                    attackCommands.Add(new MGPumAttackCommand(this.playerID, chain, unit));
+            }
             return attackCommands;
         }
 
@@ -91,30 +106,22 @@ namespace mg.pummelz
             return Math.Max(Math.Abs(x1 - x2), Math.Abs(y1 - y2));
         }
 
-        private MGPumMoveCommand getMoveCommandBreadthFirst(MGPumUnit unit, MGPumField targetField)
+        private MGPumFieldChain getChainBreadthFirst(MGPumUnit unit, MGPumField targetField, MGPumFieldChainMatcher matcher)
         {
-            MGPumFieldChain chain = new MGPumFieldChain(this.playerID, unit.getMoveMatcher());
+            MGPumFieldChain chain = new MGPumFieldChain(this.playerID, matcher);
             List<Vector2Int> path = pathFinder.findPathInternal(unit, targetField, this.state.fields);
             if (path == null)
-            {
                 return null;
-            }
             foreach (Vector2Int coords in path)
             {
                 MGPumField field = this.state.fields.getField(coords);
                 if (chain.canAdd(field))
-                {
                     chain.add(field);
-                }
                 else
-                {
                     return null;
-                }
             }
-            if(chain.isValidChain())
-            {
-                return new MGPumMoveCommand(this.playerID, chain, unit);  
-            }
+            if (chain.isValidChain())
+                return chain;
             return null;
         }
     }

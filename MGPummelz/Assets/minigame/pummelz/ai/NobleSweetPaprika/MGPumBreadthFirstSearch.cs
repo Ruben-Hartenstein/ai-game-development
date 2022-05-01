@@ -30,7 +30,7 @@ namespace mg.pummelz
 
             tilesToVisit.Enqueue(unit.field.coords);
             queued[unit.field.x, unit.field.y] = true;
-
+            
             int recursion = 0;
             int maxRecursion = 500;
             while(tilesToVisit.Count > 0)
@@ -40,10 +40,6 @@ namespace mg.pummelz
                     break;
                 
                 Vector2Int position = tilesToVisit.Dequeue();
-                
-                if (fields.fieldArray[position.x, position.y] == null || (!fields.getField(position).isEmpty() && position != unit.field.coords)){
-                    continue; 
-                }
 
                 if (position == targetField.coords)
                 {
@@ -56,6 +52,10 @@ namespace mg.pummelz
                         path.Insert(0, predecessors[path[0]]);
                     }
                     return path;
+                }
+
+                if (fields.fieldArray[position.x, position.y] == null || (!fields.getField(position).isEmpty() && position != unit.field.coords)){
+                    continue; 
                 }
 
                 foreach (Vector2Int neighbor in getNeighbors(position, fields))
