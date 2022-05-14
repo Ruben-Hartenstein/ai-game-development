@@ -11,13 +11,13 @@ namespace mg.pummelz
         {
             MGPumGameState state = this.controller.GetState();
             MGPumGameStateOracle stateOracle = this.controller.GetStateOracle();
-            Debug.Log("getDecision of Default for: " + unit.name);
+            // Debug.Log("getDecision of Default for: " + unit.name);
             // If he can attack, he (in most cases) should
 
             if (stateOracle.canAttack(unit) && unit.currentRange >= 1)
             {
                 List<MGPumAttackCommand> attackCommands = getAllAttackCommands(unit);
-                Debug.Log("Number of Attacks: " + attackCommands.Count);
+                // Debug.Log("Number of Attacks: " + attackCommands.Count);
                 if (attackCommands.Count > 0)
                 {
                     List<MGPumUnit> enemyUnits = new List<MGPumUnit>();
@@ -26,44 +26,53 @@ namespace mg.pummelz
                     Dictionary<MGPumUnit, MGPumAttackCommand> unitAttacks = new Dictionary<MGPumUnit, MGPumAttackCommand>();
                     for (int index = 0; index < enemyUnits.Count; index++)
                     {
-                        Debug.Log("Unit in range: " + enemyUnits[index].name);
+                        // Debug.Log("Unit in range: " + enemyUnits[index].name);
                         unitAttacks.Add(enemyUnits[index], attackCommands[index]);
                         if ((enemyUnits[index].currentHealth - unit.currentPower) <= 0)
                         {
                             killableUnits.Add(enemyUnits[index]);
-                            Debug.Log("Oneshot unit in range: " + enemyUnits[index].name);
+                            // Debug.Log("Oneshot unit in range: " + enemyUnits[index].name);
                         }
 
                     }
-                    Debug.Log("Number of oneshot Units: " + killableUnits.Count);
+                    // Debug.Log("Number of oneshot Units: " + killableUnits.Count);
                     MGPumAttackCommand attackCommand;
                     if (killableUnits.Count > 0)
                     {
-                        Debug.Log("oneshot Unit to attack: " + killableUnits.Count);
+                        // Maybe different function for oneshot units?
+                        // Debug.Log("oneshot Unit to attack: " + killableUnits.Count);
                         attackCommand = unitAttacks[getPreferableUnitToAttack(unit, killableUnits)];
                     }
                     else
                     {
-                        Debug.Log("Unit to attack: " + enemyUnits.Count);
+                        // Debug.Log("Unit to attack: " + enemyUnits.Count);
                         attackCommand = unitAttacks[getPreferableUnitToAttack(unit, enemyUnits)];
                     }
-                    Debug.Log(attackCommand.ToString());
+                    // Debug.Log(attackCommand.ToString());
                     return attackCommand;
                 }
             }
 
-            // If he can't attack, maybe he should move
-
+            // If he can't attack, maybe he should move MoveCommand more suitable for snipers
             if (this.controller.GetStateOracle().canMove(unit) && unit.currentSpeed >= 1)
             {
-                List<MGPumAttackCommand> attackCommands = getAllAttackCommands(unit);
-                Debug.Log("Number of Moves: " + attackCommands.Count);
-                if (attackCommands.Count > 0)
+                // Debug.Log("Can Move");
+                List<MGPumMoveCommand> moveCommands = getAllMoveCommands(unit);
+                // Debug.Log("Number of Moves: " + moveCommands.Count);
+                if (moveCommands.Count > 0)
                 {
+                    moveCommands.Sort(new MGPumMoveCommandComparer(this));
+                    // Debug.Log("Move order");
+                    foreach (MGPumMoveCommand move in moveCommands)
+                    {
+                        // Debug.Log(move.ToString());
+                    }
+                    // Debug.Log(moveCommands[0].ToString() + "---------------------------------------------");
+                    return moveCommands[0];
                 }
             }
 
-            Debug.Log("Next player");
+            // Debug.Log("Next Unit");
             return null;
         }
     }

@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace mg.pummelz
 {
-    public class MGPummelzComparer : IComparer<MGPumUnit>
+    public class MGPumUnitComparer : IComparer<MGPumUnit>
     {
         public int Compare(MGPumUnit unit1, MGPumUnit unit2)
         {
-           return scoreUnits(unit1.name).CompareTo(scoreUnits(unit2.name));
+           return scoreUnits(unit2.name).CompareTo(scoreUnits(unit1.name));
         }
 
         private int scoreUnits(String pumName)

@@ -22,14 +22,14 @@ namespace mg.pummelz
             return neighbourFields;
         }
 
-        public List<Vector2Int> findPathInternal(MGPumUnit unit, MGPumField targetField, MGPumFields fields)
+        public List<Vector2Int> findPathInternal(MGPumField startField, MGPumField targetField, int maxRange, MGPumFields fields)
         {
             queued = new bool[fields.dimSize, fields.dimSize];
             tilesToVisit = new Queue<Vector2Int>();
             predecessors = new Dictionary<Vector2Int, Vector2Int>();
 
-            tilesToVisit.Enqueue(unit.field.coords);
-            queued[unit.field.x, unit.field.y] = true;
+            tilesToVisit.Enqueue(startField.coords);
+            queued[startField.x, startField.y] = true;
             
             int recursion = 0;
             int maxRecursion = 500;
@@ -51,10 +51,12 @@ namespace mg.pummelz
                     {
                         path.Insert(0, predecessors[path[0]]);
                     }
-                    return path;
+                    if (path.Count <= maxRange + 1)
+                        return path;
+                    return null;
                 }
 
-                if (fields.fieldArray[position.x, position.y] == null || (!fields.getField(position).isEmpty() && position != unit.field.coords)){
+                if (fields.fieldArray[position.x, position.y] == null || (!fields.getField(position).isEmpty() && position != startField.coords)){
                     continue; 
                 }
 

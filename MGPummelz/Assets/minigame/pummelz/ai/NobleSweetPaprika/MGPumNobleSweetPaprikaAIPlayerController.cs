@@ -38,7 +38,7 @@ namespace mg.pummelz
             List<MGPumUnit> availableUnits = state.getAllUnitsInZone(MGPumZoneType.Battlegrounds, this.playerID);
             foreach (MGPumUnit unit in availableUnits)
             {
-                Debug.Log(unit.coords + ": " + unit.name);
+                // Debug.Log(unit.coords + ": " + unit.name);
                 MGPumCommand command = decisionTreeManager.getDecision(unit);
                 if (command != null)
                 {
@@ -46,7 +46,7 @@ namespace mg.pummelz
                 }
                 //commands.AddRange(getAllCommands(unit));
             }
-            Debug.Log("End Turn");
+            // Debug.Log("End Turn");
             return new MGPumEndTurnCommand(this.playerID);
             if (commands.Count == 0)
             {
@@ -59,18 +59,6 @@ namespace mg.pummelz
             }
 
             return moveCommand;
-        }
-
-        private List<MGPumCommand> getAllCommands(MGPumUnit unit)
-        {
-            List<MGPumCommand> commands = new List<MGPumCommand>();
-            if (this.stateOracle.canMove(unit) && unit.currentSpeed >= 1)
-                commands.AddRange(getAllMoveCommands(unit));
-
-            if (this.stateOracle.canAttack(unit) && unit.currentRange >= 1)
-                commands.AddRange(getAllAttackCommands(unit));
-
-            return commands;
         }
 
         private List<MGPumField> getFieldsInRange(MGPumField home, int range, int ownerID)
@@ -90,21 +78,6 @@ namespace mg.pummelz
                 }
             }
             return fieldsInRange;
-        }
-
-        private List<MGPumMoveCommand> getAllMoveCommands(MGPumUnit unit)
-        {
-            List<MGPumMoveCommand> moveCommands = new List<MGPumMoveCommand>();
-            List<MGPumField> fieldsInRange = getFieldsInRange(unit.field, unit.currentSpeed, -1);
-            foreach (MGPumField field in fieldsInRange)
-            {
-                MGPumFieldChain chain = getChainBreadthFirst(unit, field, unit.getMoveMatcher());
-                if (chain != null)
-                {
-                    moveCommands.Add(new MGPumMoveCommand(this.playerID, chain, unit));
-                }
-            }
-            return moveCommands;
         }
 
         private int getAbsoluteDistance(MGPumField here, MGPumField there)
