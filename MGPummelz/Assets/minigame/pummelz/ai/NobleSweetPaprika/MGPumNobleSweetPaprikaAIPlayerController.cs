@@ -15,9 +15,20 @@ namespace mg.pummelz
             return new int[] { 2746235, 8366074 };
         }
 
-        public MGPumNobleSweetPaprikaAIPlayerController(int playerID) : base(playerID) {
+        public MGPumNobleSweetPaprikaAIPlayerController(int playerID) : base(playerID)
+        {
             pathFinder = new MGPumBreadthFirstSearch();
             decisionTreeManager = new MGPumDecisionTreeManager(this);
+        }
+
+        public MGPumGameStateOracle GetStateOracle()
+        {
+            return this.stateOracle;
+        }
+
+        public MGPumGameState GetState()
+        {
+            return this.state;
         }
 
         internal override MGPumCommand calculateCommand()
@@ -27,10 +38,16 @@ namespace mg.pummelz
             List<MGPumUnit> availableUnits = state.getAllUnitsInZone(MGPumZoneType.Battlegrounds, this.playerID);
             foreach (MGPumUnit unit in availableUnits)
             {
-                Debug.Log(unit.unitID);
-                decisionTreeManager.getDecision(unit);
-                commands.AddRange(getAllCommands(unit));
+                Debug.Log(unit.coords + ": " + unit.name);
+                MGPumCommand command = decisionTreeManager.getDecision(unit);
+                if (command != null)
+                {
+                    return command;
+                }
+                //commands.AddRange(getAllCommands(unit));
             }
+            Debug.Log("End Turn");
+            return new MGPumEndTurnCommand(this.playerID);
             if (commands.Count == 0)
             {
                 return moveCommand;
@@ -47,10 +64,10 @@ namespace mg.pummelz
         private List<MGPumCommand> getAllCommands(MGPumUnit unit)
         {
             List<MGPumCommand> commands = new List<MGPumCommand>();
-            if (stateOracle.canMove(unit) && unit.currentSpeed >= 1)
+            if (this.stateOracle.canMove(unit) && unit.currentSpeed >= 1)
                 commands.AddRange(getAllMoveCommands(unit));
 
-            if (stateOracle.canAttack(unit) && unit.currentRange >= 1)
+            if (this.stateOracle.canAttack(unit) && unit.currentRange >= 1)
                 commands.AddRange(getAllAttackCommands(unit));
 
             return commands;
@@ -63,13 +80,13 @@ namespace mg.pummelz
             {
                 for (int y = home.y - range; y <= home.y + range; y++)
                 {
-                    MGPumField field = this.state.getField(new Vector2Int(x, y));    
+                    MGPumField field = this.state.getField(new Vector2Int(x, y));
                     if (field == null)
                         continue;
-                    if(field.isEmpty() && ownerID == -1)
+                    if (field.isEmpty() && ownerID == -1)
                         fieldsInRange.Add(field);
-                    else if(!field.isEmpty() && field.getUnit(this.state).ownerID == ownerID)
-                        fieldsInRange.Add(field);                            
+                    else if (!field.isEmpty() && field.getUnit(this.state).ownerID == ownerID)
+                        fieldsInRange.Add(field);
                 }
             }
             return fieldsInRange;
@@ -90,19 +107,6 @@ namespace mg.pummelz
             return moveCommands;
         }
 
-        private List<MGPumAttackCommand> getAllAttackCommands(MGPumUnit unit)
-        {
-            List<MGPumAttackCommand> attackCommands = new List<MGPumAttackCommand>();
-            List<MGPumField> fieldsInRange = getFieldsInRange(unit.field, unit.currentRange, 1 - this.playerID);
-            foreach (MGPumField field in fieldsInRange)
-            {
-                MGPumFieldChain chain = getChainBreadthFirst(unit, field, unit.getAttackMatcher());
-                if (chain != null)
-                    attackCommands.Add(new MGPumAttackCommand(this.playerID, chain, unit));
-            }
-            return attackCommands;
-        }
-
         private int getAbsoluteDistance(MGPumField here, MGPumField there)
         {
             int x1 = here.x;
@@ -110,25 +114,6 @@ namespace mg.pummelz
             int x2 = there.x;
             int y2 = there.y;
             return Math.Max(Math.Abs(x1 - x2), Math.Abs(y1 - y2));
-        }
-
-        private MGPumFieldChain getChainBreadthFirst(MGPumUnit unit, MGPumField targetField, MGPumFieldChainMatcher matcher)
-        {
-            MGPumFieldChain chain = new MGPumFieldChain(this.playerID, matcher);
-            List<Vector2Int> path = pathFinder.findPathInternal(unit, targetField, this.state.fields);
-            if (path == null)
-                return null;
-            foreach (Vector2Int coords in path)
-            {
-                MGPumField field = this.state.fields.getField(coords);
-                if (chain.canAdd(field))
-                    chain.add(field);
-                else
-                    return null;
-            }
-            if (chain.isValidChain())
-                return chain;
-            return null;
         }
     }
 }

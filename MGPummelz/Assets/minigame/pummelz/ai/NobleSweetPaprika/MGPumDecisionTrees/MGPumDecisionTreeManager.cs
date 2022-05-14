@@ -13,12 +13,12 @@ namespace mg.pummelz
             this.controller = controller;
         }
 
-        private MGPumDecisionTree getDecisionTree(String PUMID)
+        private MGPumDecisionTree getDecisionTree(String pumName)
         {
-            switch (PUMID)
+            switch (pumName)
             {
-                case "PUM003":
-                    return new MGPumDecisionTreeSneip(controller);
+                case "Sneip":
+                    return new MGPumDecisionTreeDefault(controller);
                     break;
                 default:
                     return new MGPumDecisionTreeDefault(controller);
@@ -28,8 +28,8 @@ namespace mg.pummelz
 
         public MGPumCommand getDecision(MGPumUnit unit)
         {
-            MGPumDecisionTree decisionTree = getDecisionTree(unit.unitID);
-            MGPumCommand command = decisionTree.getDecision();
+            MGPumDecisionTree decisionTree = getDecisionTree(unit.name);
+            MGPumCommand command = decisionTree.getDecision(unit);
             decisionTree = null;
             return command;
         }
