@@ -56,7 +56,7 @@ namespace mg.pummelz
                 case "Bellie":
                     return 90;
                 case "null":
-                    return 0;
+                    return -1;
                 default:
                     return 140;
             }
@@ -67,9 +67,11 @@ namespace mg.pummelz
             if (examinedBummz.Contains(unit))
                 return 0;
             examinedBummz.Add(unit);
+
             int enemyScore = 0;
             int allyScore = 0;
             int affiliation = 1;
+            
             List<MGPumField> surroundingEnemyFields = this.decisionTree.getFieldsInRange(unit.field, 1, 1 - this.decisionTree.controller.playerID); 
             List<MGPumField> surroundingAllyFields = this.decisionTree.getFieldsInRange(unit.field, 1, this.decisionTree.controller.playerID);
             foreach (MGPumField enemyField in surroundingEnemyFields)
@@ -78,16 +80,16 @@ namespace mg.pummelz
                 if ((enemyUnit.currentHealth - recursionLevel * 2) > 0)
                     enemyScore += scoreUnit(enemyUnit, recursionLevel + 1);
             }
+
             foreach (MGPumField allyField in surroundingAllyFields)
             {
                 MGPumUnit allyUnit = allyField.getUnit(this.decisionTree.state);
                 if ((allyUnit.currentHealth - recursionLevel * 2) > 0)
                     allyScore += scoreUnit(allyUnit, recursionLevel + 1);
             }
-            if (unit.ownerID == this.decisionTree.controller.playerID) {
+
+            if (unit.ownerID == this.decisionTree.controller.playerID)
                 affiliation = -1;
-            }
-            Debug.Log((enemyScore - allyScore) + 100 * affiliation);
 
             return (enemyScore - allyScore) + 100 * affiliation;
         }

@@ -17,12 +17,10 @@ namespace mg.pummelz
         {
             switch (pumName)
             {
-                case "Sneip":
-                    return new MGPumDecisionTreeDefault(controller);
-                    break;
+                case "Czaremir":
+                    return new MGPumDecisionTreeCzaremir(controller);
                 default:
                     return new MGPumDecisionTreeDefault(controller);
-                    break;
             }
         }
 

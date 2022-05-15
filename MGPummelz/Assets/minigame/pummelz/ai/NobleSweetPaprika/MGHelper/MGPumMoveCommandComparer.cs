@@ -7,9 +7,11 @@ namespace mg.pummelz
     public class MGPumMoveCommandComparer : IComparer<MGPumMoveCommand>
     {
         private MGPumDecisionTree decisionTree;
-        public MGPumMoveCommandComparer(MGPumDecisionTree decisionTree)
+        private int preferableNumberOfPrey;
+        public MGPumMoveCommandComparer(MGPumDecisionTree decisionTree, int preferableNumberOfPrey = 1)
         {
             this.decisionTree = decisionTree;
+            this.preferableNumberOfPrey = preferableNumberOfPrey;
         }
         public int Compare(MGPumMoveCommand move1, MGPumMoveCommand move2)
         {
@@ -27,14 +29,14 @@ namespace mg.pummelz
             else
                 field2 = move2.chain.last;
 
-            float scoreMove1 = prefereableNumberOfPrey(getNumberOfPrey(unit1, field1)) - getNumberOfAttackers(field1);
-            float scoreMove2 = prefereableNumberOfPrey(getNumberOfPrey(unit2, field2)) - getNumberOfAttackers(field2);
+            float scoreMove1 = preyScore(getNumberOfPrey(unit1, field1)) - getNumberOfAttackers(field1);
+            float scoreMove2 = preyScore(getNumberOfPrey(unit2, field2)) - getNumberOfAttackers(field2);
             return scoreMove2.CompareTo(scoreMove1);
         }
 
-        private float prefereableNumberOfPrey(float numberOfPrey)
+        private float preyScore(int numberOfPrey)
         {
-            return (-Math.Abs(numberOfPrey - 1)) + numberOfPrey / 4 + 1;
+            return (-Math.Abs((float) numberOfPrey - (float) this.preferableNumberOfPrey)) + ((float) numberOfPrey - (float) this.preferableNumberOfPrey) / 4 + 1.25f;
         }
 
         private int getNumberOfAttackers(MGPumField field)
