@@ -9,12 +9,10 @@ namespace mg.pummelz
         public MGPumDecisionTreeDefault(MGPumNobleSweetPaprikaAIPlayerController controller) : base(controller) { }
         public override MGPumCommand getDecision(MGPumUnit unit)
         {
-            MGPumGameState state = this.controller.GetState();
-            MGPumGameStateOracle stateOracle = this.controller.GetStateOracle();
             // Debug.Log("getDecision of Default for: " + unit.name);
             // If he can attack, he (in most cases) should
 
-            if (stateOracle.canAttack(unit) && unit.currentRange >= 1)
+            if (this.stateOracle.canAttack(unit) && unit.currentRange >= 1)
             {
                 List<MGPumAttackCommand> attackCommands = getAllAttackCommands(unit);
                 // Debug.Log("Number of Attacks: " + attackCommands.Count);
@@ -22,7 +20,7 @@ namespace mg.pummelz
                 {
                     List<MGPumUnit> enemyUnits = new List<MGPumUnit>();
                     List<MGPumUnit> killableUnits = new List<MGPumUnit>();
-                    attackCommands.ForEach(attackCommand => enemyUnits.Add(attackCommand.chain.getLast().getUnit(state)));
+                    attackCommands.ForEach(attackCommand => enemyUnits.Add(attackCommand.chain.getLast().getUnit(this.state)));
                     Dictionary<MGPumUnit, MGPumAttackCommand> unitAttacks = new Dictionary<MGPumUnit, MGPumAttackCommand>();
                     for (int index = 0; index < enemyUnits.Count; index++)
                     {
@@ -38,26 +36,23 @@ namespace mg.pummelz
                     // Debug.Log("Number of oneshot Units: " + killableUnits.Count);
                     MGPumAttackCommand attackCommand;
                     if (killableUnits.Count > 0)
-                    {
-                        // Maybe different function for oneshot units?
-                        // Debug.Log("oneshot Unit to attack: " + killableUnits.Count);
-                        attackCommand = unitAttacks[getPreferableUnitToAttack(unit, killableUnits)];
-                    }
+                        enemyUnits = killableUnits;   
                     else
-                    {
-                        // Debug.Log("Unit to attack: " + enemyUnits.Count);
-                        attackCommand = unitAttacks[getPreferableUnitToAttack(unit, enemyUnits)];
-                    }
-                    // Debug.Log(attackCommand.ToString());
-                    return attackCommand;
+                        enemyUnits = getPreferableUnitsToAttack(unit, enemyUnits);
+                    
+                    enemyUnits.Add(null);
+                    enemyUnits.Sort(new MGPumUnitComparer(this));
+                    if (enemyUnits[0] != null)
+                        return unitAttacks[enemyUnits[0]];
                 }
             }
 
             // If he can't attack, maybe he should move MoveCommand more suitable for snipers
-            if (this.controller.GetStateOracle().canMove(unit) && unit.currentSpeed >= 1)
+            if (this.stateOracle.canMove(unit) && unit.currentSpeed >= 1)
             {
                 // Debug.Log("Can Move");
                 List<MGPumMoveCommand> moveCommands = getAllMoveCommands(unit);
+                moveCommands.Add(new MGPumMoveCommand(this.controller.playerID, null, unit));
                 // Debug.Log("Number of Moves: " + moveCommands.Count);
                 if (moveCommands.Count > 0)
                 {
@@ -68,7 +63,8 @@ namespace mg.pummelz
                         // Debug.Log(move.ToString());
                     }
                     // Debug.Log(moveCommands[0].ToString() + "---------------------------------------------");
-                    return moveCommands[0];
+                    if (moveCommands[0].chain != null)
+                        return moveCommands[0];
                 }
             }
 

@@ -6,11 +6,15 @@ namespace mg.pummelz
 {
     public abstract class MGPumDecisionTree
     {
-        protected MGPumNobleSweetPaprikaAIPlayerController controller { get; private set; }
+        public MGPumNobleSweetPaprikaAIPlayerController controller { get; private set; }
+        public MGPumGameState state;
+        public MGPumGameStateOracle stateOracle;
         protected MGPumBreadthFirstSearch pathFinder = new MGPumBreadthFirstSearch();
         protected MGPumDecisionTree(MGPumNobleSweetPaprikaAIPlayerController controller)
         {
             this.controller = controller;
+            state = this.controller.GetState();
+            stateOracle = this.controller.GetStateOracle();
         }
         public abstract MGPumCommand getDecision(MGPumUnit unit);
 
@@ -45,7 +49,7 @@ namespace mg.pummelz
             return numberOfPrey;
         }
 
-        public int getNumberOfAttackers(MGPumUnit unit, MGPumField field)
+        public int getNumberOfAttackers(MGPumField field)
         {
             int numberOfAttackers = 0;
             List<MGPumUnit> enemyUnits = this.controller.GetState().getAllUnitsInZone(MGPumZoneType.Battlegrounds, 1 - this.controller.playerID);
@@ -65,8 +69,6 @@ namespace mg.pummelz
 
         private bool checkShotDirection(List<Vector2Int> path)
         {
-            Vector2Int start = path[0];
-            Vector2Int last = path[path.Count - 1];
             int xdir = 0;
             int ydir = 0;
 
@@ -90,7 +92,7 @@ namespace mg.pummelz
             return true;
         }
 
-        protected List<MGPumMoveCommand> getAllMoveCommands(MGPumUnit unit)
+        public List<MGPumMoveCommand> getAllMoveCommands(MGPumUnit unit)
         {
             List<MGPumMoveCommand> moveCommands = new List<MGPumMoveCommand>();
             List<MGPumField> fieldsInRange = getFieldsInRange(unit.field, unit.currentSpeed, -1);
@@ -105,41 +107,18 @@ namespace mg.pummelz
             return moveCommands;
         }
 
-        protected MGPumUnit getPreferableUnitToAttack(MGPumUnit attacker, List<MGPumUnit> units)
+        protected List<MGPumUnit> getPreferableUnitsToAttack(MGPumUnit attacker, List<MGPumUnit> units)
         {
             List<MGPumUnit> killableUnits = new List<MGPumUnit>();
             foreach (MGPumUnit prey in units)
             {
                 // Debug.Log("Prey in range: " + prey.name);
                 if (canKill(prey))
-                {
-                    // Debug.Log("Killable");
                     killableUnits.Add(prey);
-                }
-
             }
             if (killableUnits.Count > 0)
-            {
-                // Debug.Log("KillableCount: " + killableUnits.Count);
-                killableUnits.Sort(new MGPumUnitComparer());
-                // Debug.Log("Attack order");
-                foreach (MGPumUnit prey in killableUnits)
-                {
-                    // Debug.Log(prey.name);
-                }
-                return killableUnits[0];
-            }
-            else
-            {
-                // Debug.Log("KillableCount: " + killableUnits.Count);
-                units.Sort(new MGPumUnitComparer());
-                // Debug.Log("Attack order");
-                foreach (MGPumUnit prey in units)
-                {
-                    // Debug.Log(prey.name);
-                }
-                return units[0];
-            }
+                units = killableUnits;
+            return units;
         }
 
         protected bool canKill(MGPumUnit prey)
@@ -161,7 +140,7 @@ namespace mg.pummelz
             return false;
         }
 
-        protected List<MGPumField> getFieldsInRange(MGPumField home, int range, int ownerID)
+        public List<MGPumField> getFieldsInRange(MGPumField home, int range, int ownerID)
         {
             List<MGPumField> fieldsInRange = new List<MGPumField>();
             for (int x = home.x - range; x <= home.x + range; x++)
