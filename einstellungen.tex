@@ -1,0 +1,101 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   Einstellungen
+%
+% Hier können alle relevanten Einstellungen für diese Arbeit gesetzt werden.
+% Dazu gehören Angaben u.a. über den Autor sowie Formatierungen.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Sprache %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Aktuell sind Deutsch und Englisch unterstützt.
+%% Es werden nicht nur alle vom Dokument erzeugten Texte in
+%% der entsprechenden Sprache angezeigt, sondern auch weitere
+%% Aspekte angepasst, wie z.B. die Anführungszeichen und
+%% Datumsformate.
+\setzesprache{de} % de oder en
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Angaben  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Die meisten der folgenden Daten werden auf dem
+%% Deckblatt angezeigt, einige auch im weiteren Verlauf
+%% des Dokuments.
+\setzemartrikelnr{8366074, 2746235}
+\setzekurs{TINF19ITA}
+\setzetitel{Konzept und Implementierung einer KI f\"ur das Rundenstrategiespiel Pummelz}
+\setzedatumAnfang{07.02.2022}
+\setzedatumAbgabe{19.05.2022}
+\setzefirma{Robert Bosch GmbH}
+\setzefirmenort{Stuttgart}
+\setzeabgabeort{Stuttgart}
+\setzeabschluss{Bachelor of Science}
+\setzestudiengang{Informatik}
+\setzedhbw{Stuttgart}
+\setzebetreuer{Prof. Dr. Falko K\"otter}
+\setzegutachter{-todo-}
+\setzezeitraum{07.02.-19.05.2022}
+\setzearbeit{Dokumentation}
+\setzeautor{Jona Krumrein, Ruben Hartenstein}
+\setzesemester{6.}
+\setzestudienrichtung{IT-automotive}
+\setzejahrgang{2019}
+\setzeabteilung{-todo-}
+\setzestandort{-todo-}
+
+\inhalttrue                 % auskommentieren oder ändern zu \inhaltfalse, falls kein Inhaltsverzeichnis eingefügt werden soll
+\unterschriftenblattfalse    % auskommentieren oder ändern zu \unterschriftenblattfalse, falls kein Unterschriftenblatt eingefügt werden soll
+\selbsterklfalse             % auskommentieren oder ändern zu \selbsterklfalse, wenn keine Selbstständigkeitserklärung benötigt wird
+\sperrvermerkfalse          % auskommentieren oder ändern zu \sperrvermerkfalse, wenn kein Sperrvermerk benötigt wird
+\abkverzfalse                % auskommentieren oder ändern zu \abkverzfalse, wenn kein Abkürzungsverzeichnis benötigt wird
+\abbverztrue                % auskommentieren oder ändern zu \abbverzfalse, wenn kein Abbildungsverzeichnis benötigt wird
+\tableverztrue              % auskommentieren oder ändern zu \tableverzfalse, wenn kein Tabellenverzeichnis benötigt wird
+\listverztrue               % auskommentieren oder ändern zu \listverzfalse, wenn kein Listingsverzeichnis benötigt wird
+\formelverzfalse             % auskommentieren oder ändern zu \formelverzfalse, wenn kein Formelverzeichnis benötigt wird
+\formelgroeverzfalse			% auskommentieren oder ändern zu \formelgroeverzfalse, wenn kein Formelgrößenverzeichnis benötigt wird
+\abstractfalse              % auskommentieren oder ändern zu \abstractfalse, wenn kein Abstract gewünscht ist
+\bothabstractsfalse          % auskommentieren oder ändern zu \bothabstractsfalse, wenn nur der Abstract in der Hauptsprache eingefügt werden soll
+\appendixtrue               % auskommentieren oder ändern zu \appendixfalse, wenn kein Anhang gewünscht ist
+\literaturtrue              % auskommentieren oder ändern zu \literaturfalse, wenn kein Literaturverzeichnis gewünscht ist (\appendixtrue muss gesetzt sein!)
+\glossarfalse                % auskommentieren oder ändern zu \glossarfalse, wenn kein Glossar gewünscht ist (\appendixtrue muss gesetzt sein!)
+\watermarkfalse             % auskommentieren oder ändern zu \watermarktrue, wenn Wasserzeichen auf dem Titelblatt eingefügt werden soll
+
+\refWithPagesfalse          % ändern zu \refWithPagestrue, wenn die Seitenzahl bei Verweisen auf Kapitel engefügt werden sollen
+
+\reviewerfalse			% auskommentiren oder ändern zu \reviewerfalse wenn kein Gutachter gesetzt werden muss
+
+% Angabe des roten/gelben Punktes auf dem Titelblatt zur Kennzeichnung der Vertraulichkeitsstufe.
+% Mögliche Angaben sind \yellowdottrue und \reddottrue. Werden beide angegeben, wird der rote Punkt gezeichnet.
+% Wird keines der Kommandos angegeben, wird kein Punkt gezeichnet
+\yellowdotfalse
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Literaturverzeichnis %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Bei Fehlern während der Verarbeitung bitte in ads/header.tex bei der
+%% Einbindung des Pakets biblatex (ungefähr ab Zeile 110,
+%% einmal für jede Sprache), biber in bibtex ändern.
+\newcommand{\ladeliteratur}{%
+\addbibresource{bibliographie.bib}
+%\addbibresource{weitereDatei.bib}
+}
+
+%% Zitierstil
+%% siehe: http://ctan.mirrorcatalogs.com/macros/latex/contrib/biblatex/doc/biblatex.pdf (3.3.1 Citation Styles)
+%% mögliche Werte z.B numeric-comp, alphabetic, authoryear
+\setzezitierstil{alphabetic}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Verschiedene Schriftarten
+% laut nag Warnung: palatino obsolete, use mathpazo, helvet (option scaled=.95), courier instead
+\setzeschriftart{lmodern} % palatino oder goudysans, lmodern, libertine
+
+%% Abstand vor Kapitelüberschriften zum oberen Seitenrand
+\setzekapitelabstand{20pt}
+
+%% Spaltenabstand
+\setzespaltenabstand{10pt}
+%%Zeilenabstand innerhalb einer Tabelle
+\setzezeilenabstand{1.5}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
