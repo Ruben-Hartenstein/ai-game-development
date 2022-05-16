@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12.10) (preloaded format=pdflatex 2022.2.19)  16 MAY 2022 17:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12.10) (preloaded format=pdflatex 2022.2.19)  16 MAY 2022 20:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2227,16 +2227,64 @@ Package microtype Info: Loading generic protrusion settings for font family
 Package tocbasic Info: character protrusion at toc deactivated on input line 79
 .
 
-(dokumentation.toc)
+(dokumentation.toc
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
+5.
+
+(C:\Users\jojok\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
+5.
+
+(C:\Users\jojok\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
+15.
+
+(C:\Users\jojok\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
+File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
+15.
+
+(C:\Users\jojok\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
+File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 15.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 15.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 15.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 15.
+
+
+(C:\Users\jojok\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(C:\Users\jojok\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 15.
+
+
+(C:\Users\jojok\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(C:\Users\jojok\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+))
 \tf@toc=\write8
 \openout8 = `dokumentation.toc'.
 
-<images/dhbw_de.pdf, id=58, 130.4875pt x 64.24pt>
+<images/dhbw_de.pdf, id=60, 130.4875pt x 64.24pt>
 File: images/dhbw_de.pdf Graphic file (type pdf)
 <use images/dhbw_de.pdf>
 Package pdftex.def Info: images/dhbw_de.pdf  used on input line 80.
 (pdftex.def)             Requested size: 80.91335pt x 39.83368pt.
-<images/Bosch_Logo_Kopfzeile.png, id=59, 159.3225pt x 102.1635pt>
+<images/Bosch_Logo_Kopfzeile.png, id=61, 159.3225pt x 102.1635pt>
 File: images/Bosch_Logo_Kopfzeile.png Graphic file (type png)
 <use images/Bosch_Logo_Kopfzeile.png>
 Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 80
@@ -2248,59 +2296,14 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 8
 (C:\Users\jojok\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 8
-0.
-
-(C:\Users\jojok\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
-File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 8
-0.
-
-(C:\Users\jojok\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
-File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-80.
-
-(C:\Users\jojok\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
-File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-80.
-
-(C:\Users\jojok\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
-File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 80.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 80.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 80.
-
-
-(C:\Users\jojok\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-(C:\Users\jojok\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
-File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 80.
-
-
-(C:\Users\jojok\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-(C:\Users\jojok\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
-File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-)
-[1
+ [1
 
  <./images/dhbw_de.pdf> <./images/Bosch_Logo_Kopfzeile.png>]
 Package tocbasic Info: character protrusion at lof deactivated on input line 99
 .
-
-(dokumentation.lof)
+ (dokumentation.lof)
 \tf@lof=\write9
 \openout9 = `dokumentation.lof'.
 
@@ -2313,7 +2316,8 @@ File: images/Bosch_Logo_Kopfzeile.png Graphic file (type png)
 Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 10
 4.
 (pdftex.def)             Requested size: 119.81003pt x 76.82234pt.
- [2
+
+[2
 
 
 
@@ -2355,18 +2359,17 @@ Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 13
  [4
 
 
-]
-(content/01kapitel.tex
+] (content/01kapitel.tex
 chapter 1.
 ) (content/02kapitel.tex
 File: images/dhbw_de.pdf Graphic file (type pdf)
 <use images/dhbw_de.pdf>
-Package pdftex.def Info: images/dhbw_de.pdf  used on input line 3.
+Package pdftex.def Info: images/dhbw_de.pdf  used on input line 12.
 (pdftex.def)             Requested size: 80.91335pt x 39.83368pt.
 File: images/Bosch_Logo_Kopfzeile.png Graphic file (type png)
 <use images/Bosch_Logo_Kopfzeile.png>
-Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 3.
-
+Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 12
+.
 (pdftex.def)             Requested size: 119.81003pt x 76.82234pt.
  [1
 
@@ -2376,12 +2379,12 @@ chapter 2.
 ) (content/03kapitel.tex
 File: images/dhbw_de.pdf Graphic file (type pdf)
 <use images/dhbw_de.pdf>
-Package pdftex.def Info: images/dhbw_de.pdf  used on input line 3.
+Package pdftex.def Info: images/dhbw_de.pdf  used on input line 10.
 (pdftex.def)             Requested size: 80.91335pt x 39.83368pt.
 File: images/Bosch_Logo_Kopfzeile.png Graphic file (type png)
 <use images/Bosch_Logo_Kopfzeile.png>
-Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 3.
-
+Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 10
+.
 (pdftex.def)             Requested size: 119.81003pt x 76.82234pt.
  [2
 
@@ -2390,12 +2393,12 @@ chapter 3.
 ) (content/04kapitel.tex
 File: images/dhbw_de.pdf Graphic file (type pdf)
 <use images/dhbw_de.pdf>
-Package pdftex.def Info: images/dhbw_de.pdf  used on input line 3.
+Package pdftex.def Info: images/dhbw_de.pdf  used on input line 10.
 (pdftex.def)             Requested size: 80.91335pt x 39.83368pt.
 File: images/Bosch_Logo_Kopfzeile.png Graphic file (type png)
 <use images/Bosch_Logo_Kopfzeile.png>
-Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 3.
-
+Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 10
+.
 (pdftex.def)             Requested size: 119.81003pt x 76.82234pt.
  [3
 
@@ -2445,11 +2448,11 @@ Package logreq Info: Writing requests to 'dokumentation.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 58785 strings out of 478593
- 1244947 string characters out of 2844604
- 2313423 words of memory out of 3000000
- 75756 multiletter control sequences out of 15000+600000
- 513756 words of font info for 81 fonts, out of 8000000 for 9000
+ 58864 strings out of 478593
+ 1246280 string characters out of 2844604
+ 2314435 words of memory out of 3000000
+ 75801 multiletter control sequences out of 15000+600000
+ 525975 words of font info for 105 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  113i,20n,109p,10629b,2329s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/jojok/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{
@@ -2459,9 +2462,9 @@ sers/jojok/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Us
 ers/jojok/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Use
 rs/jojok/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users
 /jojok/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb>
-Output written on dokumentation.pdf (10 pages, 256619 bytes).
+Output written on dokumentation.pdf (10 pages, 266553 bytes).
 PDF statistics:
- 173 PDF objects out of 1000 (max. 8388607)
- 22 named destinations out of 1000 (max. 500000)
- 28873 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 182 PDF objects out of 1000 (max. 8388607)
+ 23 named destinations out of 1000 (max. 500000)
+ 37073 words of extra memory for PDF output out of 42996 (max. 10000000)
 

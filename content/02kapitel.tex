@@ -1,4 +1,32 @@
 %!TEX root = ../dokumentation.tex
 
-\chapter{Konzept}
+% Spielen Sie Pummelz und formulieren Sie strategische Grundsätze 
+% basierend auf Ihren Spielerfahrungen. Basierend auf diesen Spielerfahrungen
+% entwerfen Sie ein generelles Vorgehen für Ihre Spiele-KI. Nutzen Sie dazu
+% geeignete Konzepte aus der Vorlesung (OODA-Loops, Decision Trees, etc.). 
+% Entwerfen Sie ebenfalls eine Architektur in geeigneter Form (UML, FMC 
+% oder ähnlich) und dokumentieren Sie sie in Ihrem Entwurfsdokument.
+% Das Entwurfsdokument für Aufgabe 1 soll eine maximale Länge von 2-3
+% Seiten (mit Abbildungen) haben.
 
+\chapter{Entwurf}
+
+\section{Strategische Grundsätze}
+
+Zu Beginn des Entwurfs wurden sich die folgenden strategischen Grundlagen überlegt. Diese dienen als Grundlage der KI und ihr Handeln in bestimmten Situationen. 
+
+\begin{itemize}
+	\item Wenn ein Czaremir (König) im Spiel ist muss sein Überleben jede Runde garantiert werden, da sein Tod das Spiel beendet. Im Gegenzug sollte der gegnerische priorisiert angegriffen werden, um einen schnellen Sieg erzwingen zu können.
+	\item Viel hilft viel: in jedem Zug sollte mit jeder Figur angegriffen werden die kann. 
+	\textbf{Außnahme} sind Angriffe auf:\\
+	Bummz wenn er einem selbst mehr Schaden als dem Gegner zufügt\\
+	Chilly wenn er nicht \glqq Oneshot\grqq{} ist
+	\item Schaden den der Gegner austeilen kann minimieren:
+	\begin{itemize}
+		\item Schaden auf einen Gegner zu konzentrieren lohnt sich mehr als Schaden auf mehrere Gegner zu verteilen, da so Schaden in der nächsten Runde vermieden werden kann.
+		\item Gegner müssen anhand ihrer Eigenschaften klassifiziert werden. Gegner die mehr Schaden austeilen sind früher zu töten, da auch hier Schaden in der nächsten Runde vermieden werden kann
+		\item Die KI soll unbedingt die Reichweite der eigenen Einheiten ausnutzen. So soll die Anzahl der gegnerischen Einheiten, die eigene Einheit mit großer Reichweite angreifen kann, gering gehalten werden.
+	\end{itemize}
+	\item Einheiten mit geringer Reichweite und hohen Lebenspunkten als \glqq Tanks\grqq{} einsetzen, um andere Einheiten zu schützen.
+	\item \textbf{ABER:} Aufpassen, dass möglichst viele eigene Einheiten angreifen können, um keine Blockade zu erzeugen und Schaden zu \glqq verlieren\grqq{}
+\end{itemize}
