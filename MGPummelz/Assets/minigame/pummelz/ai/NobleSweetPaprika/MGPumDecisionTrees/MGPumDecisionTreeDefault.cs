@@ -36,10 +36,10 @@ namespace mg.pummelz
                     // Debug.Log("Number of oneshot Units: " + killableUnits.Count);
                     MGPumAttackCommand attackCommand;
                     if (killableUnits.Count > 0)
-                        enemyUnits = killableUnits;   
+                        enemyUnits = killableUnits;
                     else
                         enemyUnits = getPreferableUnitsToAttack(unit, enemyUnits);
-                    
+
                     enemyUnits.Add(null);
                     enemyUnits.Sort(new MGPumUnitComparer(this));
                     if (enemyUnits[0] != null)
@@ -51,10 +51,45 @@ namespace mg.pummelz
             if (this.stateOracle.canMove(unit) && unit.currentSpeed >= 1)
             {
                 List<MGPumMoveCommand> moveCommands = getAllMoveCommands(unit);
-                moveCommands.Add(new MGPumMoveCommand(this.controller.playerID, null, unit));
-                moveCommands.Sort(new MGPumMoveCommandComparer(this));
-                if (moveCommands[0].chain != null)
-                    return moveCommands[0];   
+                if (moveCommands.Count == 0)
+                    return null;
+                // If nothing happend for 20+ moves, move directly to enemy
+                if (state.turnNumber >= state.lastChangeTurnNumber + 20)
+                {
+                    MGPumUnit closestEnemy = null;
+                    int closestDistance = int.MaxValue;
+                    List<MGPumUnit> enemyUnits = this.controller.GetState().getAllUnitsInZone(MGPumZoneType.Battlegrounds, 1 - this.controller.playerID);
+                    foreach (MGPumUnit enemyUnit in enemyUnits)
+                    {
+                        int distance = getAbsoluteDistance(enemyUnit.field, unit.field);
+                        if (distance < closestDistance)
+                        {
+                            closestDistance = distance;
+                            closestEnemy = enemyUnit;
+                        }
+                    }
+                    Debug.Log(closestEnemy.name);
+
+                    MGPumMoveCommand closestMoveCommand = null;
+                    closestDistance = int.MaxValue;
+                    foreach (MGPumMoveCommand moveCommand in moveCommands)
+                    {
+                        int distance = getAbsoluteDistance(closestEnemy.field, moveCommand.chain.getLast());
+                        if (distance < closestDistance)
+                        {
+                            closestDistance = distance;
+                            closestMoveCommand = moveCommand;
+                        }
+                    }
+                    return closestMoveCommand;
+                }
+                else
+                {
+                    moveCommands.Add(new MGPumMoveCommand(this.controller.playerID, null, unit));
+                    moveCommands.Sort(new MGPumMoveCommandComparer(this));
+                    if (moveCommands[0].chain != null)
+                        return moveCommands[0];
+                }
             }
             return null;
         }

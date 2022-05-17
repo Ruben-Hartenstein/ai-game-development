@@ -41,10 +41,10 @@ namespace mg.pummelz
             foreach (MGPumField targetField in fieldsInRange)
             {
                 List<Vector2Int> path = getPathBreadthFirst(field, targetField, unit.currentRange);
-                    if (path != null && checkShotDirection(path))
-                    {
-                        numberOfPrey++;
-                    }
+                if (path != null && checkShotDirection(path))
+                {
+                    numberOfPrey++;
+                }
             }
             return numberOfPrey;
         }
@@ -74,18 +74,20 @@ namespace mg.pummelz
 
             for (int i = 1; i < path.Count; i++)
             {
-                if(xdir == 0)
+                if (xdir == 0)
                 {
-                    xdir = path[i].x - path[i-1].x;
+                    xdir = path[i].x - path[i - 1].x;
                 }
-                else if (path[i].x - path[i-1].x != 0 && xdir != path[i].x - path[i-1].x) {
+                else if (path[i].x - path[i - 1].x != 0 && xdir != path[i].x - path[i - 1].x)
+                {
                     return false;
                 }
-                if(ydir == 0)
+                if (ydir == 0)
                 {
-                    ydir = path[i].y - path[i-1].y;
+                    ydir = path[i].y - path[i - 1].y;
                 }
-                else if (path[i].y - path[i-1].y != 0 && ydir != path[i].y - path[i-1].y){
+                else if (path[i].y - path[i - 1].y != 0 && ydir != path[i].y - path[i - 1].y)
+                {
                     return false;
                 }
             }
@@ -98,7 +100,7 @@ namespace mg.pummelz
             List<MGPumField> fieldsInRange = getFieldsInRange(unit.field, unit.currentSpeed, -1);
             foreach (MGPumField field in fieldsInRange)
             {
-                MGPumFieldChain chain = getChainBreadthFirst(unit.field, field, unit.currentRange, unit.getMoveMatcher());
+                MGPumFieldChain chain = getChainBreadthFirst(unit.field, field, unit.currentSpeed, unit.getMoveMatcher());
                 if (chain != null)
                 {
                     moveCommands.Add(new MGPumMoveCommand(this.controller.playerID, chain, unit));
@@ -164,7 +166,7 @@ namespace mg.pummelz
             return pathFinder.findPathInternal(startField, targetField, maxRange, this.controller.GetState().fields);
         }
 
-        private MGPumFieldChain getChainBreadthFirst(MGPumField startField, MGPumField targetField, int maxRange, MGPumFieldChainMatcher matcher)
+        protected MGPumFieldChain getChainBreadthFirst(MGPumField startField, MGPumField targetField, int maxRange, MGPumFieldChainMatcher matcher)
         {
             MGPumFieldChain chain = new MGPumFieldChain(this.controller.playerID, matcher);
             List<Vector2Int> path = getPathBreadthFirst(startField, targetField, maxRange);
@@ -181,6 +183,15 @@ namespace mg.pummelz
             if (chain.isValidChain())
                 return chain;
             return null;
+        }
+
+        protected int getAbsoluteDistance(MGPumField here, MGPumField there)
+        {
+            int x1 = here.x;
+            int y1 = here.y;
+            int x2 = there.x;
+            int y2 = there.y;
+            return Math.Max(Math.Abs(x1 - x2), Math.Abs(y1 - y2));
         }
     }
 }

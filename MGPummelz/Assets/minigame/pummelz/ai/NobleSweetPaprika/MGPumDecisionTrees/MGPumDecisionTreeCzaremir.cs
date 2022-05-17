@@ -42,10 +42,44 @@ namespace mg.pummelz
             if (this.stateOracle.canMove(unit) && unit.currentSpeed >= 1)
             {
                 List<MGPumMoveCommand> moveCommands = getAllMoveCommands(unit);
-                moveCommands.Add(new MGPumMoveCommand(this.controller.playerID, null, unit));
-                moveCommands.Sort(new MGPumMoveCommandComparer(this, 0));
-                if (moveCommands[0].chain != null)
-                    return moveCommands[0];
+                if (moveCommands.Count == 0)
+                    return null;
+                if (state.turnNumber >= state.lastChangeTurnNumber + 30)
+                {
+                    MGPumUnit closestEnemy = null;
+                    int closestDistance = int.MaxValue;
+                    List<MGPumUnit> enemyUnits = this.controller.GetState().getAllUnitsInZone(MGPumZoneType.Battlegrounds, 1 - this.controller.playerID);
+                    foreach (MGPumUnit enemyUnit in enemyUnits)
+                    {
+                        int distance = getAbsoluteDistance(enemyUnit.field, unit.field);
+                        if (distance < closestDistance)
+                        {
+                            closestDistance = distance;
+                            closestEnemy = enemyUnit;
+                        }
+                    }
+                    Debug.Log(closestEnemy.name);
+
+                    MGPumMoveCommand closestMoveCommand = null;
+                    closestDistance = int.MaxValue;
+                    foreach (MGPumMoveCommand moveCommand in moveCommands)
+                    {
+                        int distance = getAbsoluteDistance(closestEnemy.field, moveCommand.chain.getLast());
+                        if (distance < closestDistance)
+                        {
+                            closestDistance = distance;
+                            closestMoveCommand = moveCommand;
+                        }
+                    }
+                    return closestMoveCommand;
+                }
+                else
+                {
+                    moveCommands.Add(new MGPumMoveCommand(this.controller.playerID, null, unit));
+                    moveCommands.Sort(new MGPumMoveCommandComparer(this, 1));
+                    if (moveCommands[0].chain != null)
+                        return moveCommands[0];
+                }
             }
             return null;
         }
