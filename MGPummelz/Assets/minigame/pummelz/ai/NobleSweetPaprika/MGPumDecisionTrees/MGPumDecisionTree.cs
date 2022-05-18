@@ -13,8 +13,8 @@ namespace mg.pummelz
         protected MGPumDecisionTree(MGPumNobleSweetPaprikaAIPlayerController controller)
         {
             this.controller = controller;
-            state = this.controller.GetState();
-            stateOracle = this.controller.GetStateOracle();
+            this.state = this.controller.GetState();
+            this.stateOracle = this.controller.GetStateOracle();
         }
         public abstract MGPumCommand getDecision(MGPumUnit unit);
 
@@ -52,10 +52,10 @@ namespace mg.pummelz
         public int getNumberOfAttackers(MGPumField field)
         {
             int numberOfAttackers = 0;
-            List<MGPumUnit> enemyUnits = this.controller.GetState().getAllUnitsInZone(MGPumZoneType.Battlegrounds, 1 - this.controller.playerID);
+            List<MGPumUnit> enemyUnits = this.state.getAllUnitsInZone(MGPumZoneType.Battlegrounds, 1 - this.controller.playerID);
             foreach (MGPumUnit enemyUnit in enemyUnits)
             {
-                if (this.controller.GetStateOracle().canAttack(enemyUnit) && enemyUnit.currentRange >= 1)
+                if (this.stateOracle.canAttack(enemyUnit) && enemyUnit.currentRange >= 1)
                 {
                     List<Vector2Int> path = getPathBreadthFirst(enemyUnit.field, field, enemyUnit.currentRange);
                     if (path != null && checkShotDirection(path))
@@ -126,10 +126,10 @@ namespace mg.pummelz
         protected bool canKill(MGPumUnit prey)
         {
             int preyHealth = prey.currentHealth;
-            List<MGPumUnit> availableUnits = this.controller.GetState().getAllUnitsInZone(MGPumZoneType.Battlegrounds, this.controller.playerID);
+            List<MGPumUnit> availableUnits = this.state.getAllUnitsInZone(MGPumZoneType.Battlegrounds, this.controller.playerID);
             foreach (MGPumUnit unit in availableUnits)
             {
-                if (this.controller.GetStateOracle().canAttack(unit) && unit.currentRange >= 1)
+                if (this.stateOracle.canAttack(unit) && unit.currentRange >= 1)
                 {
                     if (getChainBreadthFirst(unit.field, prey.field, unit.currentRange, unit.getAttackMatcher()) != null)
                     {
@@ -149,12 +149,12 @@ namespace mg.pummelz
             {
                 for (int y = home.y - range; y <= home.y + range; y++)
                 {
-                    MGPumField field = this.controller.GetState().getField(new Vector2Int(x, y));
+                    MGPumField field = this.state.getField(new Vector2Int(x, y));
                     if (field == null)
                         continue;
                     if (field.isEmpty() && ownerID == -1)
                         fieldsInRange.Add(field);
-                    else if (!field.isEmpty() && field.getUnit(this.controller.GetState()).ownerID == ownerID)
+                    else if (!field.isEmpty() && field.getUnit(this.state).ownerID == ownerID)
                         fieldsInRange.Add(field);
                 }
             }
@@ -163,7 +163,7 @@ namespace mg.pummelz
 
         private List<Vector2Int> getPathBreadthFirst(MGPumField startField, MGPumField targetField, int maxRange)
         {
-            return pathFinder.findPathInternal(startField, targetField, maxRange, this.controller.GetState().fields);
+            return pathFinder.findPathInternal(startField, targetField, maxRange, this.state.fields);
         }
 
         protected MGPumFieldChain getChainBreadthFirst(MGPumField startField, MGPumField targetField, int maxRange, MGPumFieldChainMatcher matcher)
@@ -174,7 +174,7 @@ namespace mg.pummelz
                 return null;
             foreach (Vector2Int coords in path)
             {
-                MGPumField field = this.controller.GetState().fields.getField(coords);
+                MGPumField field = this.state.fields.getField(coords);
                 if (chain.canAdd(field))
                     chain.add(field);
                 else
@@ -185,7 +185,39 @@ namespace mg.pummelz
             return null;
         }
 
-        protected int getAbsoluteDistance(MGPumField here, MGPumField there)
+        public MGPumMoveCommand getMoveCommandToEnemy(MGPumUnit unit)
+        {
+            List<MGPumMoveCommand> moveCommands = getAllMoveCommands(unit);
+            if (moveCommands.Count == 0)
+                return null;
+            MGPumUnit closestEnemy = null;
+            int closestDistance = int.MaxValue;
+            List<MGPumUnit> enemyUnits = this.state.getAllUnitsInZone(MGPumZoneType.Battlegrounds, 1 - this.controller.playerID);
+            foreach (MGPumUnit enemyUnit in enemyUnits)
+            {
+                int distance = getAbsoluteDistance(enemyUnit.field, unit.field);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestEnemy = enemyUnit;
+                }
+            }
+
+            MGPumMoveCommand closestMoveCommand = null;
+            closestDistance = int.MaxValue;
+            foreach (MGPumMoveCommand moveCommand in moveCommands)
+            {
+                int distance = getAbsoluteDistance(closestEnemy.field, moveCommand.chain.getLast());
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestMoveCommand = moveCommand;
+                }
+            }
+            return closestMoveCommand;
+        }
+
+        public int getAbsoluteDistance(MGPumField here, MGPumField there)
         {
             int x1 = here.x;
             int y1 = here.y;

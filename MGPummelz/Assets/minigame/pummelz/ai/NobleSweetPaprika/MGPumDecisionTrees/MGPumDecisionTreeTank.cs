@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace mg.pummelz
 {
-    public class MGPumDecisionTreeBummz : MGPumDecisionTree
+    public class MGPumDecisionTreeTank : MGPumDecisionTree
     {
-        public MGPumDecisionTreeBummz(MGPumNobleSweetPaprikaAIPlayerController controller) : base(controller) { }
+        public MGPumDecisionTreeTank(MGPumNobleSweetPaprikaAIPlayerController controller) : base(controller) { }
         public override MGPumCommand getDecision(MGPumUnit unit)
         {
-            Debug.Log("getDecision of Bummz for: " + unit.name);
+            Debug.Log("getDecision of Tank for: " + unit.name);
 
             if (this.stateOracle.canAttack(unit) && unit.currentRange >= 1)
             {
@@ -43,10 +43,10 @@ namespace mg.pummelz
             {
                 if (state.turnNumber >= state.lastChangeTurnNumber + 20)
                     return this.getMoveCommandToEnemy(unit);
-
+ 
                 List<MGPumMoveCommand> moveCommands = getAllMoveCommands(unit);
                 moveCommands.Add(new MGPumMoveCommand(this.controller.playerID, null, unit));
-                moveCommands.Sort(new MGPumMoveCommandComparer(this, 8, true ,true));
+                moveCommands.Sort(new MGPumMoveCommandComparer(this, 8, true));
                 if (moveCommands[0].chain != null)
                     return moveCommands[0];
             }

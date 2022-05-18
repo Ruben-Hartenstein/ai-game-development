@@ -21,6 +21,12 @@ namespace mg.pummelz
                     return new MGPumDecisionTreeCzaremir(controller);
                 case "Bummz":
                     return new MGPumDecisionTreeBummz(controller);
+                case "Wolli":
+                    return new MGPumDecisionTreeTank(controller);
+                case "Mampfred":
+                    return new MGPumDecisionTreeTank(controller);
+                case "Bellie":
+                    return new MGPumDecisionTreeTank(controller);
                 default:
                     return new MGPumDecisionTreeDefault(controller);
             }
