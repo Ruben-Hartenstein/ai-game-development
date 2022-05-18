@@ -12,12 +12,10 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {2}Entwurf}{2}{chapter.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Strategische Grundsätze}{2}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Implementierung und Iterationsschritte}{5}{chapter.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Implementierung und Iterationsschritte}{3}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Evaluation}{6}{chapter.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Evaluation}{4}{chapter.4}%
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Anhang}{A}{chapter*.5}%
+\contentsline {chapter}{\nonumberline Anhang}{A}{chapter*.6}%
 \defcounter {refsection}{0}\relax 
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
