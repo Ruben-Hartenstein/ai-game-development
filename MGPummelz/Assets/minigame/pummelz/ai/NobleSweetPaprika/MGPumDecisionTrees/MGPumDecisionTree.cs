@@ -109,18 +109,15 @@ namespace mg.pummelz
             return moveCommands;
         }
 
-        protected List<MGPumUnit> getPreferableUnitsToAttack(MGPumUnit attacker, List<MGPumUnit> units)
+        protected List<MGPumAttackCommand> getKillingAttackCommands(List<MGPumAttackCommand> attackCommands)
         {
-            List<MGPumUnit> killableUnits = new List<MGPumUnit>();
-            foreach (MGPumUnit prey in units)
+            List<MGPumAttackCommand> killCommands = new List<MGPumAttackCommand>();
+            foreach (MGPumAttackCommand attackCommand in attackCommands)
             {
-                // Debug.Log("Prey in range: " + prey.name);
-                if (canKill(prey))
-                    killableUnits.Add(prey);
+                if (canKill(attackCommand.defender))
+                    killCommands.Add(attackCommand);
             }
-            if (killableUnits.Count > 0)
-                units = killableUnits;
-            return units;
+            return killCommands;
         }
 
         protected bool canKill(MGPumUnit prey)

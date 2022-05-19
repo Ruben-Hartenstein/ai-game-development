@@ -15,35 +15,31 @@ namespace mg.pummelz
             if (this.stateOracle.canAttack(unit) && unit.currentRange >= 1)
             {
                 List<MGPumAttackCommand> attackCommands = getAllAttackCommands(unit);
-                // Debug.Log("Number of Attacks: " + attackCommands.Count);
                 if (attackCommands.Count > 0)
                 {
-                    List<MGPumUnit> enemyUnits = new List<MGPumUnit>();
-                    List<MGPumUnit> killableUnits = new List<MGPumUnit>();
-                    attackCommands.ForEach(attackCommand => enemyUnits.Add(attackCommand.chain.getLast().getUnit(this.state)));
-                    Dictionary<MGPumUnit, MGPumAttackCommand> unitAttacks = new Dictionary<MGPumUnit, MGPumAttackCommand>();
-                    for (int index = 0; index < enemyUnits.Count; index++)
+                    List<MGPumAttackCommand> killCommands = new List<MGPumAttackCommand>();
+                    foreach (MGPumAttackCommand attackCommand in attackCommands)
                     {
-                        // Debug.Log("Unit in range: " + enemyUnits[index].name);
-                        unitAttacks.Add(enemyUnits[index], attackCommands[index]);
-                        if ((enemyUnits[index].currentHealth - unit.currentPower) <= 0)
-                        {
-                            killableUnits.Add(enemyUnits[index]);
-                            // Debug.Log("Oneshot unit in range: " + enemyUnits[index].name);
-                        }
-
+                        if (attackCommand.defender.currentHealth - unit.currentPower <= 0)
+                            killCommands.Add(attackCommand);
                     }
-                    // Debug.Log("Number of oneshot Units: " + killableUnits.Count);
-                    MGPumAttackCommand attackCommand;
-                    if (killableUnits.Count > 0)
-                        enemyUnits = killableUnits;
-                    else
-                        enemyUnits = getPreferableUnitsToAttack(unit, enemyUnits);
+                    if (killCommands.Count == 0)
+                        killCommands = getKillingAttackCommands(attackCommands);
 
-                    enemyUnits.Add(null);
-                    enemyUnits.Sort(new MGPumUnitComparer(this, unit));
-                    if (enemyUnits[0] != null)
-                        return unitAttacks[enemyUnits[0]];
+                    if (killCommands.Count == 0)
+                    {
+                        // no kill commands, different comparer
+                        attackCommands.Add(null);
+                        attackCommands.Sort(new MGPumAttackCommandComparer(this));
+                    }
+                    else
+                    {
+                        killCommands.Add(null);
+                        killCommands.Sort(new MGPumAttackCommandComparer(this));
+                        attackCommands = killCommands;
+                    }
+                    if (attackCommands[0] != null)
+                        return attackCommands[0];
                 }
             }
 

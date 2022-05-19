@@ -4,23 +4,32 @@ using UnityEngine;
 
 namespace mg.pummelz
 {
-    public class MGPumUnitComparer : IComparer<MGPumUnit>
+    public class MGPumAttackCommandComparer : IComparer<MGPumAttackCommand>
     {
         private MGPumDecisionTree decisionTree;
         private MGPumUnit attackerUnit;
         private Dictionary<MGPumUnit, int> examinedUnits;
-        public MGPumUnitComparer(MGPumDecisionTree decisionTree, MGPumUnit attackerUnit)
+        public MGPumAttackCommandComparer(MGPumDecisionTree decisionTree)
         {
             this.decisionTree = decisionTree;
-            this.attackerUnit = attackerUnit;
             this.examinedUnits = new Dictionary<MGPumUnit, int>();
         }
-        public int Compare(MGPumUnit unit1, MGPumUnit unit2)
+        public int Compare(MGPumAttackCommand attackCommand1, MGPumAttackCommand attackCommand2)
         {
-            this.examinedUnits.Clear();
-            int unitScore1 = scoreUnit(unit1, 0);
-            this.examinedUnits.Clear();
-            int unitScore2 = scoreUnit(unit2, 0);
+            int unitScore1 = 0;
+            int unitScore2 = 0;
+            if (attackCommand1 != null)
+            {
+                this.examinedUnits.Clear();
+                this.attackerUnit = attackCommand1.attacker;
+                unitScore1 = scoreUnit(attackCommand1.defender, 0);
+            }
+            if (attackCommand2 != null)
+            {
+                this.examinedUnits.Clear();
+                this.attackerUnit = attackCommand2.attacker;
+                unitScore2 = scoreUnit(attackCommand2.defender, 0);
+            }
             return unitScore2.CompareTo(unitScore1);
         }
 

@@ -16,26 +16,29 @@ namespace mg.pummelz
                 List<MGPumAttackCommand> attackCommands = getAllAttackCommands(unit);
                 if (attackCommands.Count > 0)
                 {
-                    List<MGPumUnit> enemyUnits = new List<MGPumUnit>();
-                    List<MGPumUnit> killableUnits = new List<MGPumUnit>();
-                    attackCommands.ForEach(attackCommand => enemyUnits.Add(attackCommand.chain.getLast().getUnit(this.state)));
-                    Dictionary<MGPumUnit, MGPumAttackCommand> unitAttacks = new Dictionary<MGPumUnit, MGPumAttackCommand>();
-                    for (int index = 0; index < enemyUnits.Count; index++)
+                    List<MGPumAttackCommand> killCommands = new List<MGPumAttackCommand>();
+                    foreach (MGPumAttackCommand attackCommand in attackCommands)
                     {
-                        unitAttacks.Add(enemyUnits[index], attackCommands[index]);
-                        if ((enemyUnits[index].currentHealth - unit.currentPower) <= 0)
-                            killableUnits.Add(enemyUnits[index]);
+                        if (attackCommand.defender.currentHealth - unit.currentPower <= 0)
+                            killCommands.Add(attackCommand);
                     }
-                    MGPumAttackCommand attackCommand;
-                    if (killableUnits.Count > 0)
-                        enemyUnits = killableUnits;
-                    else
-                        enemyUnits = getPreferableUnitsToAttack(unit, enemyUnits);
+                    if (killCommands.Count == 0)
+                        killCommands = getKillingAttackCommands(attackCommands);
 
-                    enemyUnits.Add(null);
-                    enemyUnits.Sort(new MGPumUnitComparer(this, unit));
-                    if (enemyUnits[0] != null)
-                        return unitAttacks[enemyUnits[0]];
+                    if (killCommands.Count == 0)
+                    {
+                        // no kill commands, different comparer
+                        attackCommands.Add(null);
+                        attackCommands.Sort(new MGPumAttackCommandComparer(this));
+                    }
+                    else
+                    {
+                        killCommands.Add(null);
+                        killCommands.Sort(new MGPumAttackCommandComparer(this));
+                        attackCommands = killCommands;
+                    }
+                    if (attackCommands[0] != null)
+                        return attackCommands[0];
                 }
             }
 
