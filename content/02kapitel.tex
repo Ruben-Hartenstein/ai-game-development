@@ -31,17 +31,17 @@ Zu Beginn des Entwurfs wurden sich die folgenden strategischen Grundlagen überl
 	\item \textbf{ABER:} Aufpassen, dass möglichst viele eigene Einheiten angreifen können, um keine Blockade zu erzeugen und Schaden zu \glqq verlieren\grqq{}
 \end{itemize}
 
-Als grundlegendes Konzept soll ein DefaultDecisionTree konzipiert werden, welcher anhand der Spielsituation eine Entscheidung über den Spielzug der jeweiligen Spielfigur trifft. Hierbei wird eine Unterscheidung zwischen einem Angriff und einer Bewegung getroffen. Der Angriffentscheidung liegen drei Abfragen zu Grunde: Kann eine gegnerische Einheit \glqq geoneshotted\grqq{}, getötet oder angegriffen werden. Diese werden in der angegeben Reiehenfolge durchlaufen. Beim Zutreffen des Ereignisses soll dann ein Angriff durchgeführt werden. Die Entscheidung bei mehreren möglichen Einheiten erfolgt über eine festgelegte Hierarchie.
+Als grundlegendes Konzept soll ein Decision Tree konzipiert werden, welcher anhand der Spielsituation eine Entscheidung über den Spielzug der jeweiligen Spielfigur trifft. Hierbei wird eine Unterscheidung zwischen einem Angriff und einer Bewegung getroffen. Der Angriffsentscheidung liegen drei Abfragen zu Grunde: Kann eine gegnerische Einheit \glqq geoneshotted\grqq{}, getötet oder angegriffen werden. Diese werden in der angegeben Reiehenfolge durchlaufen. Beim Zutreffen des Ereignisses soll dann ein Angriff durchgeführt werden. Die Entscheidung bei mehreren möglichen Einheiten erfolgt über eine festgelegte Hierarchie.
 
-Ein Bewegungszug hat die folgenden beiden Möglichkeiten: Wurden zuvor mehrere Züge ohne einen Angriff vollzogen, so läuft die Einheit aggressiv auf die nächste gegnerische Einheit zu. Ist dies nicht der Fall soll eine Standard-Bewegung ausgeführt werden, bei der die Einheit im besten Fall eine andere angreifen und von keiner gegenerischen Einheit angegriffen werden kann.
+Ein Bewegungszug hat die folgenden beiden Möglichkeiten: Wurden zuvor mehrere Züge ohne einen Angriff vollzogen, so läuft die Einheit aggressiv auf die nächste gegnerische Einheit zu. Ist dies nicht der Fall soll eine Standard-Bewegung ausgeführt werden, bei der die Einheit im besten Fall eine andere angreifen und von keiner gegnerischen Einheit angegriffen werden kann.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{konzeptDecisionTree}
-	\caption{Konzept eines DecisionTrees zur Pummelz-Command-Entscheidung}
+	\caption{Konzept eines Decision Trees zur Pummelz-Command-Entscheidung}
 	\label{fig:konzeptDecisionTree}
 \end{figure}
 
-Aufbauend auf diesem DefaultDecisionTree sollen weitere DecisionTrees erstellt werden, die auf die Eigenschaften und Spezialfähigkeiten der einzelnen Einheiten zugeschnitten sind und beim Zug der entsprechenden Einheit anstatt des DefaultTrees aufgerufen werden. So ist beispielsweise das Ziel von Bummz von den eigenen Einheiten weg in die gegnerischen zu Rennen. Sneip, Killy und Ängli hingegen sollen sich möglichst weit von gegnerischen Einheiten platzieren, um so wenig möglich Gefahr ausgesetzt zu sein.
+Aufbauend auf diesem standardmäßigen Decision Tree sollen weitere Decision Trees erstellt werden, die auf die Eigenschaften und Spezialfähigkeiten der einzelnen Einheiten zugeschnitten sind und beim Zug der entsprechenden Einheit anstatt des Standard Decision Trees aufgerufen werden. So ist beispielsweise das Ziel von Bummz von den eigenen Einheiten weg in die gegnerischen zu Rennen. Sneip, Killy und Ängli hingegen sollen sich möglichst weit von gegnerischen Einheiten platzieren, um so wenig wie möglich Gefahr ausgesetzt zu sein.
 
-\textbf{Lieblingspummli:} 
+\textbf{Lieblingspummli:} Mampfred (Spirit Animal - Fähigkeit die nichts kann)

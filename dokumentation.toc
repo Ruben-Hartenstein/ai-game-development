@@ -4,33 +4,29 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{II}{chapter*.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{III}{chapter*.3}%
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Listings}{IV}{chapter*.4}%
-\defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {2}Entwurf}{2}{chapter.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {3}Implementierung und Iteration}{5}{chapter.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\nonumberline 1. Iteration: Anpassung für Czaremir}{7}{subsubsection*.9}%
+\contentsline {subsubsection}{\nonumberline 1. Iteration: Anpassung für Czaremir (How do you even pronounce that?)}{7}{subsubsection*.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\nonumberline 2. Iteration: Anpassung für Range/Melee-Einheiten}{7}{subsubsection*.11}%
+\contentsline {subsubsection}{\nonumberline 2. Iteration: Anpassung für Range/Melee-Einheiten}{7}{subsubsection*.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\nonumberline 3. Iteration: Anpassung für Bummz}{7}{subsubsection*.13}%
+\contentsline {subsubsection}{\nonumberline 3. Iteration: Anpassung für Bummz}{7}{subsubsection*.11}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\nonumberline 4. Iteration: Anpassung für Draw}{8}{subsubsection*.15}%
+\contentsline {subsubsection}{\nonumberline 4. Iteration: Anpassung für Draw}{8}{subsubsection*.13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\nonumberline 5. Iteration: Anpassung für Buff-Einheiten}{8}{subsubsection*.17}%
+\contentsline {subsubsection}{\nonumberline 5. Iteration: Anpassung für Buff-Einheiten}{8}{subsubsection*.15}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}Evaluation}{9}{chapter.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\nonumberline Bewertungsfunktionen}{9}{subsubsection*.19}%
+\contentsline {subsubsection}{\nonumberline Bewertungsfunktionen}{9}{subsubsection*.17}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\nonumberline Der KI-Trick}{10}{subsubsection*.21}%
+\contentsline {subsubsection}{\nonumberline Der KI-Trick}{11}{subsubsection*.21}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\nonumberline Testen und Iterieren}{10}{subsubsection*.23}%
+\contentsline {subsubsection}{\nonumberline Testen und Iterieren}{11}{subsubsection*.23}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\nonumberline Anhang}{A}{chapter*.24}%
 \defcounter {refsection}{0}\relax 

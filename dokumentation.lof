@@ -6,15 +6,23 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Konzept eines DecisionTrees zur Pummelz-Command-Entscheidung\relax }}{3}{figure.caption.5}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Konzept eines Decision Trees zur Pummelz-Command-Entscheidung\relax }}{3}{figure.caption.3}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Klassendiagramm der vollständigen Implementierung\relax }}{5}{figure.caption.6}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Klassendiagramm der vollständigen Implementierung\relax }}{5}{figure.caption.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Funktion zur Bewertung der Anzahl der möglichen Ziele\relax }}{6}{figure.caption.7}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Funktion zur Bewertung der Anzahl der möglichen Ziele\relax }}{6}{figure.caption.5}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Angriff auf Bummz schadet wichtigen Einheiten\relax }}{9}{figure.caption.18}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Spiel wird durch das Töten des Königs gewonnen\relax }}{9}{figure.caption.18}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Flächeneffekte zu hoch bewertet - Sneip kann nicht aus seiner Ecke\relax }}{10}{figure.caption.19}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Alle Sneips haben Ziel und keine Angreifer - Tanks an der Front\relax }}{10}{figure.caption.19}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
