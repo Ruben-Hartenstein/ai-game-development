@@ -4,91 +4,44 @@ using UnityEngine;
 
 namespace mg.pummelz
 {
-    public class MGPumAttackCommandComparer : IComparer<MGPumAttackCommand>
+    public abstract class MGPumAttackCommandComparer : IComparer<MGPumAttackCommand>
     {
-        private MGPumDecisionTree decisionTree;
-        private MGPumUnit attackerUnit;
-        private Dictionary<MGPumUnit, int> examinedUnits;
+        public MGPumDecisionTree decisionTree;
+        public MGPumUnit attackerUnit;
+        public Dictionary<MGPumUnit, int> examinedUnitsBummz;
         public MGPumAttackCommandComparer(MGPumDecisionTree decisionTree)
         {
             this.decisionTree = decisionTree;
-            this.examinedUnits = new Dictionary<MGPumUnit, int>();
+            this.examinedUnitsBummz = new Dictionary<MGPumUnit, int>();
         }
-        public int Compare(MGPumAttackCommand attackCommand1, MGPumAttackCommand attackCommand2)
+        public abstract int Compare(MGPumAttackCommand attackCommand1, MGPumAttackCommand attackCommand2);
+
+        public abstract int scoreUnit(MGPumUnit unit, int recursionLevel);
+        public int linkScoreBonus(MGPumUnit unit)
         {
-            int unitScore1 = 0;
-            int unitScore2 = 0;
-            if (attackCommand1 != null)
-            {
-                this.examinedUnits.Clear();
-                this.attackerUnit = attackCommand1.attacker;
-                unitScore1 = scoreUnit(attackCommand1.defender, 0);
-            }
-            if (attackCommand2 != null)
-            {
-                this.examinedUnits.Clear();
-                this.attackerUnit = attackCommand2.attacker;
-                unitScore2 = scoreUnit(attackCommand2.defender, 0);
-            }
-            return unitScore2.CompareTo(unitScore1);
+            return unit.currentPower * 5;
         }
 
-        private int scoreUnit(MGPumUnit unit, int recursionLevel)
+        public int buffScoreBonus(MGPumUnit unit)
         {
-            String unitName = unit == null ? "null" : unit.name;
-            switch (unitName)
-            {
-                case "Czaremir":
-                    return 5000;
-                case "Killy":
-                    return 200;
-                case "Chilly":
-                    return 190;
-                case "Ängli":
-                    return 180;
-                case "Sneip":
-                    return 170;
-                case "Buffy":
-                    return 160;
-                case "Haley":
-                    return 150;
-                case "Link":
-                    return 140;
-                case "Mampfred":
-                    return 130;
-                case "Frömmli":
-                    return 125;
-                case "Wolli":
-                    return 120;
-                case "Hoppel":
-                    return 110;
-                case "Bummz":
-                    return bummzScore(unit, recursionLevel);
-                case "Bellie":
-                    return 90;
-                case "null":
-                    return -1;
-                default:
-                    return 140;
-            }
+            return (this.decisionTree.getFieldsInRange(unit.field, 1, this.decisionTree.controller.playerID).Count - 1) * 5;
         }
-
-        private int bummzScore(MGPumUnit unit, int recursionLevel)
+        
+        public int bummzScore(MGPumUnit unit, int recursionLevel)
         {
             int currentHealth = unit.currentHealth;
-            int unitBonus = 100;
-            if (examinedUnits.ContainsKey(unit))
-                currentHealth = examinedUnits[unit];
+            if (this.examinedUnitsBummz.ContainsKey(unit))
+                currentHealth = this.examinedUnitsBummz[unit];
             else
-                examinedUnits.Add(unit, currentHealth);
+                this.examinedUnitsBummz.Add(unit, currentHealth);
             if (currentHealth <= 0)
                 return 0;
 
             if (recursionLevel == 0)                                        // If recursionLevel is 0, the attacker was the unit
-                examinedUnits[unit] -= attackerUnit.currentPower;
+                this.examinedUnitsBummz[unit] -= attackerUnit.currentPower;
             else                                                            // Otherwise, damage through bomb is 2
-                examinedUnits[unit] -= 2;
-            currentHealth = examinedUnits[unit];
+                this.examinedUnitsBummz[unit] -= 2;
+            currentHealth = this.examinedUnitsBummz[unit];
 
             int affiliation = unit.ownerID != this.decisionTree.controller.playerID ? 1 : -1;
             if (currentHealth > 0)
@@ -104,15 +57,15 @@ namespace mg.pummelz
                 MGPumUnit enemyUnit = enemyField.getUnit(this.decisionTree.state);
                 int currentEnemyHealth = enemyUnit.currentHealth;
 
-                if (examinedUnits.ContainsKey(enemyUnit))
-                    currentEnemyHealth = examinedUnits[enemyUnit];
+                if (this.examinedUnitsBummz.ContainsKey(enemyUnit))
+                    currentEnemyHealth = this.examinedUnitsBummz[enemyUnit];
                 else
-                    examinedUnits.Add(enemyUnit, currentEnemyHealth);
+                    this.examinedUnitsBummz.Add(enemyUnit, currentEnemyHealth);
 
                 if (currentEnemyHealth > 0)
                 {
                     enemyScore += scoreUnit(enemyUnit, recursionLevel + 1);
-                    examinedUnits[enemyUnit] -= 2;
+                    this.examinedUnitsBummz[enemyUnit] -= 2;
                 }
             }
 
@@ -121,15 +74,15 @@ namespace mg.pummelz
                 MGPumUnit allyUnit = allyField.getUnit(this.decisionTree.state);
                 int currentAllyHealth = allyUnit.currentHealth;
 
-                if (examinedUnits.ContainsKey(allyUnit))
-                    currentAllyHealth = examinedUnits[allyUnit];
+                if (this.examinedUnitsBummz.ContainsKey(allyUnit))
+                    currentAllyHealth = this.examinedUnitsBummz[allyUnit];
                 else
-                    examinedUnits.Add(allyUnit, currentAllyHealth);
+                    this.examinedUnitsBummz.Add(allyUnit, currentAllyHealth);
 
                 if (currentAllyHealth > 0)
                 {
                     allyScore += allyUnit.name == "Bummz" ? -scoreUnit(allyUnit, recursionLevel + 1) : scoreUnit(allyUnit, recursionLevel + 1);
-                    examinedUnits[allyUnit] -= 2;
+                    this.examinedUnitsBummz[allyUnit] -= 2;
                 }
             }
             return (enemyScore - allyScore) + 100 * affiliation;

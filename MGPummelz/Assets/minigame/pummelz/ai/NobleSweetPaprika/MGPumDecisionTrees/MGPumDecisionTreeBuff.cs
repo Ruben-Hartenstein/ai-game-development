@@ -27,14 +27,13 @@ namespace mg.pummelz
 
                     if (killCommands.Count == 0)
                     {
-                        // no kill commands, different comparer
                         attackCommands.Add(null);
-                        attackCommands.Sort(new MGPumAttackCommandComparer(this));
+                        attackCommands.Sort(new MGPumAttackCommandComparerAttack(this));
                     }
                     else
                     {
                         killCommands.Add(null);
-                        killCommands.Sort(new MGPumAttackCommandComparer(this));
+                        killCommands.Sort(new MGPumAttackCommandComparerKill(this));
                         attackCommands = killCommands;
                     }
                     if (attackCommands[0] != null)
