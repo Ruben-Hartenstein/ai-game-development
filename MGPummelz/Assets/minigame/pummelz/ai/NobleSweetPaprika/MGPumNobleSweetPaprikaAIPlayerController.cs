@@ -36,7 +36,7 @@ namespace mg.pummelz
             List<MGPumUnit> availableUnits = state.getAllUnitsInZone(MGPumZoneType.Battlegrounds, this.playerID);
             foreach (MGPumUnit unit in availableUnits)
             {
-                MGPumCommand command = decisionTreeManager.getDecision(unit);
+                MGPumCommand command = decisionTreeManager.calculateDecision(unit);
                 if (command != null)
                     return command;
             }

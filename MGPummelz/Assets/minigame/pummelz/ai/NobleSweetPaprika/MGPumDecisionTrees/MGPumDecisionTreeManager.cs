@@ -27,12 +27,16 @@ namespace mg.pummelz
                     return new MGPumDecisionTreeTank(controller);
                 case "Bellie":
                     return new MGPumDecisionTreeTank(controller);
+                case "Haley":
+                    return new MGPumDecisionTreeBuff(controller);
+                case "Buffy":
+                    return new MGPumDecisionTreeBuff(controller);
                 default:
                     return new MGPumDecisionTreeDefault(controller);
             }
         }
 
-        public MGPumCommand getDecision(MGPumUnit unit)
+        public MGPumCommand calculateDecision(MGPumUnit unit)
         {
             MGPumDecisionTree decisionTree = getDecisionTree(unit.name);
             MGPumCommand command = decisionTree.getDecision(unit);

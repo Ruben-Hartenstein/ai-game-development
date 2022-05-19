@@ -34,16 +34,25 @@ namespace mg.pummelz
                 field2 = unit2.field;
             else
                 field2 = move2.chain.last;
+            // Run into enemies, keep away from allies
             if (this.aggressive && this.hazardous)
             {
                 scoreMove1 = preyScore(getNumberOfPrey(unit1, field1)) - getNumberOfSurroundingAllies(field1);
                 scoreMove2 = preyScore(getNumberOfPrey(unit2, field2)) - getNumberOfSurroundingAllies(field2);
             }
+            // Run into enemies, stay with allies
             else if (this.aggressive && !this.hazardous)
             {
                 scoreMove1 = preyScore(getNumberOfPrey(unit1, field1)) + getNumberOfAttackers(field1) + 0.5f * getNumberOfSurroundingAllies(field1);
-                scoreMove2 = preyScore(getNumberOfPrey(unit2, field2)) + getNumberOfAttackers(field2) + 0.5f * getNumberOfSurroundingAllies(field1);
+                scoreMove2 = preyScore(getNumberOfPrey(unit2, field2)) + getNumberOfAttackers(field2) + 0.5f * getNumberOfSurroundingAllies(field2);
             }
+            // Stay away from enemies, stay with allies
+            else if(!this.aggressive && !this.hazardous)
+            {
+                scoreMove1 = getNumberOfSurroundingAllies(field1) - getNumberOfAttackers(field1);
+                scoreMove2 = getNumberOfSurroundingAllies(field2) - getNumberOfAttackers(field2);
+            }
+            // Else default case (Keep enemies in range, but not too close)
             else
             {
                 scoreMove1 = preyScore(getNumberOfPrey(unit1, field1)) - getNumberOfAttackers(field1);
