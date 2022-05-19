@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12.10) (preloaded format=pdflatex 2022.2.19)  19 MAY 2022 17:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12.10) (preloaded format=pdflatex 2022.2.19)  19 MAY 2022 19:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2396,17 +2396,16 @@ File: images//konzeptDecisionTree.png Graphic file (type png)
 Package pdftex.def Info: images//konzeptDecisionTree.png  used on input line 40
 .
 (pdftex.def)             Requested size: 455.24417pt x 303.68484pt.
-)
 File: images/dhbw_de.pdf Graphic file (type pdf)
 <use images/dhbw_de.pdf>
-Package pdftex.def Info: images/dhbw_de.pdf  used on input line 148.
+Package pdftex.def Info: images/dhbw_de.pdf  used on input line 46.
 (pdftex.def)             Requested size: 80.91335pt x 39.83368pt.
 File: images/Bosch_Logo_Kopfzeile.png Graphic file (type png)
 <use images/Bosch_Logo_Kopfzeile.png>
-Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 14
-8.
+Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 46
+.
 (pdftex.def)             Requested size: 119.81003pt x 76.82234pt.
- [3 <./images//konzeptDecisionTree.png>] (content/03kapitel.tex
+ [3 <./images//konzeptDecisionTree.png>]) (content/03kapitel.tex
 File: images/dhbw_de.pdf Graphic file (type pdf)
 <use images/dhbw_de.pdf>
 Package pdftex.def Info: images/dhbw_de.pdf  used on input line 10.
@@ -2473,7 +2472,18 @@ Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 10
 (pdftex.def)             Requested size: 119.81003pt x 76.82234pt.
  [8]
 chapter 4.
-)
+File: images/dhbw_de.pdf Graphic file (type pdf)
+<use images/dhbw_de.pdf>
+Package pdftex.def Info: images/dhbw_de.pdf  used on input line 24.
+(pdftex.def)             Requested size: 80.91335pt x 39.83368pt.
+File: images/Bosch_Logo_Kopfzeile.png Graphic file (type png)
+<use images/Bosch_Logo_Kopfzeile.png>
+Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 24
+.
+(pdftex.def)             Requested size: 119.81003pt x 76.82234pt.
+[9
+
+])
 File: images/dhbw_de.pdf Graphic file (type pdf)
 <use images/dhbw_de.pdf>
 Package pdftex.def Info: images/dhbw_de.pdf  used on input line 150.
@@ -2483,9 +2493,7 @@ File: images/Bosch_Logo_Kopfzeile.png Graphic file (type png)
 Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 15
 0.
 (pdftex.def)             Requested size: 119.81003pt x 76.82234pt.
- [9
-
-] (ads/appendix.tex
+ [10] (ads/appendix.tex
 
 LaTeX Warning: Empty bibliography on input line 17.
 
@@ -2517,11 +2525,11 @@ Package logreq Info: Writing requests to 'dokumentation.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 58959 strings out of 478593
- 1248097 string characters out of 2844604
- 2315698 words of memory out of 3000000
+ 58982 strings out of 478593
+ 1248364 string characters out of 2844604
+ 2316707 words of memory out of 3000000
  75839 multiletter control sequences out of 15000+600000
- 525007 words of font info for 124 fonts, out of 8000000 for 9000
+ 525735 words of font info for 132 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  113i,20n,109p,10629b,2329s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/jojok/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{
@@ -2531,9 +2539,9 @@ sers/jojok/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Us
 ers/jojok/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Use
 rs/jojok/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users
 /jojok/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb>
-Output written on dokumentation.pdf (15 pages, 362511 bytes).
+Output written on dokumentation.pdf (16 pages, 369099 bytes).
 PDF statistics:
- 228 PDF objects out of 1000 (max. 8388607)
- 40 named destinations out of 1000 (max. 500000)
+ 239 PDF objects out of 1000 (max. 8388607)
+ 47 named destinations out of 1000 (max. 500000)
  35032 words of extra memory for PDF output out of 35830 (max. 10000000)
 

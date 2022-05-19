@@ -26,6 +26,12 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}Evaluation}{9}{chapter.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Anhang}{A}{chapter*.18}%
+\contentsline {subsubsection}{\nonumberline Bewertungsfunktionen}{9}{subsubsection*.19}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Der KI-Trick}{10}{subsubsection*.21}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Testen und Iterieren}{10}{subsubsection*.23}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Anhang}{A}{chapter*.24}%
 \defcounter {refsection}{0}\relax 
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

@@ -9,6 +9,31 @@
 
 \chapter{Evaluation}
 
+Insgesamt kann man sagen, dass die KI eine gut Spielstärke aufweist. Sie besiegt in allen Ausgangssituation die vorgegeben Greedy-KI, egal ob auf der startenden Seite oder auch nicht. Auch gegen einen echten Gegner stellt sie sich gut an und kann diesen besiegen. 
+
+\subsubsection{Bewertungsfunktionen}
+
+Die Bewertungsfunktion der Angriffe funktioniert im Großen und Ganzen sehr gut, es werden die stärkeren Gegner zuerst angegriffen. Die Überprüfung ob man eine Einheit töten kann ermöglicht es schnell viele Schaden durch den Gegner abzuwenden. Durch die verwendete Hierarchie kommt es häufig zu Situationen in denen relativ schnell die starken Einheiten des Gegners getötet wurden. Auch Siege in denen Czaremir stirbt und einige Einheiten zurücklässt treten nicht selten auf. Eine weitere gut funktionierende Bewertung findet für das Angreifen gegnerischer Bummz statt, diese werden bei ungünstigen Feldern nur sehr selten angegriffen, bei vorteilhaften Positionierungen lassen sich gezielte Angriffe und der daraus entstehende Flächenschaden sehr gut erkennen. 
+% Bild davon einfügen
+Verbesserungen für die Angriffsbewertung könnten bei der Vergabe der Zahlenwerte angesetzt werden. Diese sind nur grundlegend an die Erkenntnisse der vorhandenen Spielstände angepasst und könnten durch weitere Spielsituationen und Analysen verbessert werden. An dieser Stelle könnte man auch die Konstanten durch Funktionen wie sie bei Bummz zu finden sind für weitere Einheiten ersetzen. Dies würde eine dynamischere Bewertung von Angriffen ermöglichen und so auch bei verschiedenen Spielsituationen eine passende Angriffsentscheidung ermöglichen. Ein Beispiel dafür wäre das allgemein aggressivere Spielen sollte man sich in Führung befinden. Zuletzt könnten einzelne Comparer für jede Einheit geschrieben werden, welche es der KI ermöglicht beispielsweise einen Fokus auf eine ganz bestimmte Unit zu legen. 
+% allgemeine Bewertung/Zahlen anpassen, Funktionen für Units entwickeln, Spielstatus abhängige Entscheidungen, verschiedene AttackComparer für unterschiedliche Units (Fokus setzen)
+
+Die Bewertungsfunktion der Bewegung ist insgesamt gut gelungen und bildet eine starke Grundlage. Sehr bewegliche Einheiten mit großer Reichweite halten sich schön entfernt und greifen aus großer Distanz an, weshalb sie selten ein Ziel der Gegner sind. Auch die Bewegung der Tanks stellt dafür eine gute Absicherung dar. Außerdem lässt sich sehr oft eine durchdachte Gesamtaufstellung erkennen, welche strukturiert Richtung Gegner zieht. 
+% Bild von schlechter und guter Positionierung 
+Dennoch können Spielsituationen in denen strategisch schlechte Züge ausgeführt werden nicht vollständig vermieden werden. Auch hier wäre eine Bewertung der Bewegung je nach Spielsituation hilfreich. So kann beispielsweise bei Führung eine aggressiver Vorwärtsbewegung ausgeführt werden oder auch der König bei wenig übrigen Einheiten aktiviert werden, um sein Schaden auszunutzen anstatt passiv zu spielen. Außerdem kommt es in Spielsituationen mit vielen Einheiten dazu, dass diese sich gegenseitig blockieren und aus theoretisch möglicher Schaden oder bessere Positionen verloren gehen. Zudem könnte man die Bewegungsbewertung besser aufteilen, sodass jede Einheit seine eigene Bewertungsfunktion erhält und so perfekt auf die Eigenschaften dieser zugeschnitten ist. Hier könnte man dann ebenfalls ein gezielteres Bewegen einführen, welches zum Beispiel stärkere Richtung gegnerischem Czaremir orientiert ist, um diesen schneller zu töten. Zuletzt könnte die Bewegung einer Einheit abhängig von dessen momentanen Eigenschaften umgesetzt werden. Hat eine Einheit mehr Angriffskraft oder weniger Lebenspunkt als zuvor, dann ändert sie ihre Bewegung im Bezug auf Aggressivität. 
+
+% mehr Unit-Abhängigkeit,  gezielter Laufen (zum König), Bewegung abhängig von HP
+
+\subsubsection{Der KI-Trick}
+
+Kombinieren der Angriffskraft vieler einzelner Einheiten, um einen starken Angriff auf einen Gegner durchzuführen. Es wird für jede Einheit geschaut, ob mit Hilfe dieser eine andere Einheit noch im selben Zug getötet werden kann. Dadurch ist es möglich seinen Angriff zu sammeln und schnell Einheiten des Gegners zu töten, sodass diese den eigenen Einheiten keinen Schaden mehr zufügen können, also der Gesamtschaden, der auszuhalten ist, reduziert wird.
+
+\subsubsection{Testen und Iterieren}
+
+Zum Testen und Iterieren der KI wurde wie folgt vorgegangen. Es wurden die einzelnen verfügbaren Startsituationen durchgespielt, wobei der Fokus auf der zuletzt veränderten Einheit lag. Hierbei wurde Schritt für Schritt jede Bewegung und Angriff der Einheit angeschaut und nachvollzogen. Bei Auffälligkeiten oder strategisch schlechten Zügen wurden die Parameter des jeweiligen Zeitpunkts genauer analysiert und im Notfall die exakten Bewertungen berechnet. Anhand der Erkenntnisse wurden dann die Parameter der Bewertung angepasst. Für das Implementieren weiterer DecisionTrees oder Vertiefen der Bewertungen für spezifische Einheiten wurden diese Schritte durchgeführt, während die Bewertung noch anhand einer Charakteristik einer anderen Einheit berechnet wurde. 
+
+% verschiedene Spielsituationen ausgewählt, Fokus auf veränderte Einheit, bei Auffälligkeiten Debug und Nachrechnen,
+
 % Bummz anpassen: genaue Berechnung was passiert, wenn sie an den möglichen Felder auf die sie sich bewegt, stirbt
 % Unterscheidung zwischen Unit die wir töten und Units die wir nicht töten können (wegen Chilly)
 % keine Spielstand abhängigen Entscheidungen
