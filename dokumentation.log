@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12.10) (preloaded format=pdflatex 2022.2.19)  19 MAY 2022 23:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12.10) (preloaded format=pdflatex 2022.2.19)  19 MAY 2022 23:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2491,9 +2491,21 @@ Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 15
 (pdftex.def)             Requested size: 119.81003pt x 76.82234pt.
  [11] (ads/appendix.tex
 
-LaTeX Warning: Empty bibliography on input line 17.
+LaTeX Warning: Empty bibliography on input line 16.
 
 chapter without number
+<images//its-finished-its-done.jpg, id=174, 481.8pt x 361.35pt>
+File: images//its-finished-its-done.jpg Graphic file (type jpg)
+<use images//its-finished-its-done.jpg>
+Package pdftex.def Info: images//its-finished-its-done.jpg  used on input line 
+23.
+(pdftex.def)             Requested size: 455.24417pt x 341.44447pt.
+
+Package nag Warning: \label in float, but not after \caption on input line 24.
+
+
+Package nag Warning: \label in float, but not after \caption on input line 24.
+
 ) 
 AED: lastpage setting LastPage
 File: images/dhbw_de.pdf Graphic file (type pdf)
@@ -2508,23 +2520,25 @@ Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 15
 [1
 
 
-]
+ <./images//its-finished-its-done.jpg>]
 
 Package glossaries Warning: No \printglossary or \printglossaries found. 
 (Remove \makeglossaries if you don't want any glossaries.) 
 This document will not have a glossary.
 
-No complaints by nag.
+
+Package nag Warning: 2 complaints in total.
+
 (dokumentation.aux)
 Package logreq Info: Writing requests to 'dokumentation.run.xml'.
 \openout1 = `dokumentation.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 59011 strings out of 478593
- 1248989 string characters out of 2844604
- 2316594 words of memory out of 3000000
- 75865 multiletter control sequences out of 15000+600000
+ 59027 strings out of 478593
+ 1249485 string characters out of 2844604
+ 2316672 words of memory out of 3000000
+ 75879 multiletter control sequences out of 15000+600000
  526166 words of font info for 137 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  113i,20n,109p,10629b,2329s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2535,9 +2549,9 @@ sers/jojok/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Us
 ers/jojok/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Use
 rs/jojok/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users
 /jojok/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb>
-Output written on dokumentation.pdf (15 pages, 439491 bytes).
+Output written on dokumentation.pdf (15 pages, 596002 bytes).
 PDF statistics:
- 240 PDF objects out of 1000 (max. 8388607)
- 46 named destinations out of 1000 (max. 500000)
- 35036 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 242 PDF objects out of 1000 (max. 8388607)
+ 47 named destinations out of 1000 (max. 500000)
+ 35041 words of extra memory for PDF output out of 35830 (max. 10000000)
 
