@@ -28,7 +28,6 @@ namespace mg.pummelz
 
                     if (killCommands.Count == 0)
                     {
-                        // no kill commands, different comparer
                         attackCommands.Add(null);
                         attackCommands.Sort(new MGPumAttackCommandComparerAttack(this));
                     }
@@ -51,7 +50,7 @@ namespace mg.pummelz
  
                 List<MGPumMoveCommand> moveCommands = getAllMoveCommands(unit);
                 moveCommands.Add(new MGPumMoveCommand(this.controller.playerID, null, unit));
-                moveCommands.Sort(new MGPumMoveCommandComparer(this, hazardous:true));
+                moveCommands.Sort(new MGPumMoveCommandComparerDefault(this));
                 if (moveCommands[0].chain != null)
                     return moveCommands[0];
             }

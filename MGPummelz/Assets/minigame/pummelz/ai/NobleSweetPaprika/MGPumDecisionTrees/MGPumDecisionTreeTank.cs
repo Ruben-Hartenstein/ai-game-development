@@ -49,7 +49,7 @@ namespace mg.pummelz
  
                 List<MGPumMoveCommand> moveCommands = getAllMoveCommands(unit);
                 moveCommands.Add(new MGPumMoveCommand(this.controller.playerID, null, unit));
-                moveCommands.Sort(new MGPumMoveCommandComparer(this, 8, aggressive:true));
+                moveCommands.Sort(new MGPumMoveCommandComparerTank(this));
                 if (moveCommands[0].chain != null)
                     return moveCommands[0];
             }
