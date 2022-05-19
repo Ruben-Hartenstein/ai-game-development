@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12.10) (preloaded format=pdflatex 2022.2.19)  18 MAY 2022 18:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12.10) (preloaded format=pdflatex 2022.2.19)  19 MAY 2022 17:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2390,7 +2390,7 @@ Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 32
 [2
 
 ]
-<images//konzeptDecisionTree.png, id=105, 844.15375pt x 563.10374pt>
+<images//konzeptDecisionTree.png, id=111, 844.15375pt x 563.10374pt>
 File: images//konzeptDecisionTree.png Graphic file (type png)
 <use images//konzeptDecisionTree.png>
 Package pdftex.def Info: images//konzeptDecisionTree.png  used on input line 40
@@ -2418,7 +2418,50 @@ Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 10
 (pdftex.def)             Requested size: 119.81003pt x 76.82234pt.
  [4]
 chapter 3.
-) (content/04kapitel.tex
+<images//klassendiagramm.png, id=122, 1004.75375pt x 591.20876pt>
+File: images//klassendiagramm.png Graphic file (type png)
+<use images//klassendiagramm.png>
+Package pdftex.def Info: images//klassendiagramm.png  used on input line 17.
+(pdftex.def)             Requested size: 455.24417pt x 267.86374pt.
+File: images/dhbw_de.pdf Graphic file (type pdf)
+<use images/dhbw_de.pdf>
+Package pdftex.def Info: images/dhbw_de.pdf  used on input line 24.
+(pdftex.def)             Requested size: 80.91335pt x 39.83368pt.
+File: images/Bosch_Logo_Kopfzeile.png Graphic file (type png)
+<use images/Bosch_Logo_Kopfzeile.png>
+Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 24
+.
+(pdftex.def)             Requested size: 119.81003pt x 76.82234pt.
+[5
+
+ <./images//klassendiagramm.png>]
+<images//bewertungsfunktion.png, id=128, 1146.2825pt x 759.83875pt>
+File: images//bewertungsfunktion.png Graphic file (type png)
+<use images//bewertungsfunktion.png>
+Package pdftex.def Info: images//bewertungsfunktion.png  used on input line 30.
+
+(pdftex.def)             Requested size: 364.19672pt x 241.41423pt.
+File: images/dhbw_de.pdf Graphic file (type pdf)
+<use images/dhbw_de.pdf>
+Package pdftex.def Info: images/dhbw_de.pdf  used on input line 42.
+(pdftex.def)             Requested size: 80.91335pt x 39.83368pt.
+File: images/Bosch_Logo_Kopfzeile.png Graphic file (type png)
+<use images/Bosch_Logo_Kopfzeile.png>
+Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 42
+.
+(pdftex.def)             Requested size: 119.81003pt x 76.82234pt.
+ [6 <./images//bewertungsfunktion.png>]
+File: images/dhbw_de.pdf Graphic file (type pdf)
+<use images/dhbw_de.pdf>
+Package pdftex.def Info: images/dhbw_de.pdf  used on input line 62.
+(pdftex.def)             Requested size: 80.91335pt x 39.83368pt.
+File: images/Bosch_Logo_Kopfzeile.png Graphic file (type png)
+<use images/Bosch_Logo_Kopfzeile.png>
+Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 62
+.
+(pdftex.def)             Requested size: 119.81003pt x 76.82234pt.
+
+[7]) (content/04kapitel.tex
 File: images/dhbw_de.pdf Graphic file (type pdf)
 <use images/dhbw_de.pdf>
 Package pdftex.def Info: images/dhbw_de.pdf  used on input line 10.
@@ -2428,9 +2471,7 @@ File: images/Bosch_Logo_Kopfzeile.png Graphic file (type png)
 Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 10
 .
 (pdftex.def)             Requested size: 119.81003pt x 76.82234pt.
- [5
-
-]
+ [8]
 chapter 4.
 )
 File: images/dhbw_de.pdf Graphic file (type pdf)
@@ -2442,7 +2483,7 @@ File: images/Bosch_Logo_Kopfzeile.png Graphic file (type png)
 Package pdftex.def Info: images/Bosch_Logo_Kopfzeile.png  used on input line 15
 0.
 (pdftex.def)             Requested size: 119.81003pt x 76.82234pt.
- [6
+ [9
 
 ] (ads/appendix.tex
 
@@ -2476,11 +2517,11 @@ Package logreq Info: Writing requests to 'dokumentation.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 58890 strings out of 478593
- 1246552 string characters out of 2844604
- 2315528 words of memory out of 3000000
- 75805 multiletter control sequences out of 15000+600000
- 524097 words of font info for 114 fonts, out of 8000000 for 9000
+ 58959 strings out of 478593
+ 1248097 string characters out of 2844604
+ 2315698 words of memory out of 3000000
+ 75839 multiletter control sequences out of 15000+600000
+ 525007 words of font info for 124 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  113i,20n,109p,10629b,2329s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/jojok/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{
@@ -2490,9 +2531,9 @@ sers/jojok/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Us
 ers/jojok/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Use
 rs/jojok/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users
 /jojok/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb>
-Output written on dokumentation.pdf (12 pages, 287608 bytes).
+Output written on dokumentation.pdf (15 pages, 362511 bytes).
 PDF statistics:
- 191 PDF objects out of 1000 (max. 8388607)
- 25 named destinations out of 1000 (max. 500000)
- 35022 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 228 PDF objects out of 1000 (max. 8388607)
+ 40 named destinations out of 1000 (max. 500000)
+ 35032 words of extra memory for PDF output out of 35830 (max. 10000000)
 
